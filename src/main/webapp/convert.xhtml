@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">  
+    <h:head> 
+
+    </h:head>
+    <h:body>
+        <f:param name="i" value="0" />   
+        <ui:composition template="/layouts/home.xhtml">
+            <ui:define name="title">Конвертер dts/dtb</ui:define> 
+            <ui:define name="content">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-12 ui-lg-12">
+                        <h:form enctype="multipart/form-data" id="converter">
+                            <p:messages id="messages" showDetail="true" />
+                            <p:separator />
+                            <p:commandButton value="Download" id="dload" ajax="false"  icon="ui-icon-arrowthick-1-s"  disabled="#{converterBean.dfile==null}">
+                                <p:fileDownload value="#{converterBean.dfile}" />
+                            </p:commandButton>    
+                            <p:separator />
+                            <p:fileUpload fileUploadListener="#{converterBean.convert}" update="messages dload" fileLimitMessage="Обновите страницу" auto="true" sizeLimit="200000" fileLimit="1" allowTypes="/(\.|\/)(dts|dtb)$/" />
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define> 
+        </ui:composition>    
+    </h:body>
+</html>    

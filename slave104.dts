@@ -1,0 +1,32 @@
+/dts-v1/;
+/{
+s104{
+	connection{
+		asdualen = <2>;		/*<длина адреса ASDUA в байтах, (1 или 2)[2]>;*/
+		ioalen = <3>;		/*<длина адреса объекта информации в байтах, (от 1 до 3)[3]>;*/
+		cotlen = <2>;		/*<длина поля причины передачи в байтах (1 или 2)[1]>;*/
+		k = <30>;		/*<максимальное число неподтвержденных APDU (5-1024)[30]>;*/
+		max_clients = <10>;	/*<максимальное число подключенных клиентов, (1-65536)[10]>;*/
+		reanimatetime = <60>; 	/*<время, в течение которого возможно сохранение сеанса связи при разрыве связи с клиентом (1-65536)[60]>;*/
+		ctime = <5>;		/*<период циклической передачи данных, в секундах, (0-65535)[5]>;*/
+	};
+
+	rtu@1{
+		lpdua=<1>;
+		lru@1{
+			asdua=<1>;
+			/* DI */
+			var@1 	{ioa = <1 32>; 		type="SIQ"; 	unitbus = <0 2 0>; archived; spont;  	};
+			var@33 	{ioa = <33 32>; 	type="SIQ"; 	unitbus = <0 3 0>; archived; spont; 	};
+			var@65 	{ioa = <65 32>; 	type="SIQ"; 	unitbus = <0 4 0>; archived; spont;  	};
+			var@97 	{ioa = <97 32>; 	type="SIQ"; 	unitbus = <0 5 0>; archived; spont;  	};
+			var@129 {ioa = <129 32>; 	type="SIQ"; 	unitbus = <0 6 0>; archived; spont; 	};
+			var@161 {ioa = <161 32>; 	type="SIQ"; 	unitbus = <0 7 0>; archived; spont;  	};
+			var@193 {ioa = <193 32>; 	type="SIQ"; 	unitbus = <0 8 0>; archived; spont;  	};
+			};
+		};
+
+};
+};
+ 
+

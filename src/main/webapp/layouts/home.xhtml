@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">  
+    <h:head>
+        <title><ui:insert name="title">Название по умолчанию</ui:insert></title>
+        <link rel="shortcut icon" href="#{resource['images/favicon.ico']}" />
+        <style>
+            .inv{
+                background-color: #fca752 !important;
+            }
+            .full{
+                background-color: red !important;
+                color: #ffffff;
+            }
+        </style>
+    </h:head>
+    <h:body>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <h:form>  
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="Конвертер" outcome="convert">
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="UnitBus" outcome="ubus"> 
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Iec 104" outcome="iec">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>                    
+                    </p:tabMenu>            
+                </h:form>   
+            </div>
+        </div>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <ui:insert name="content">Содержимое по умолчанию</ui:insert>   
+            </div>
+        </div>
+
+    </h:body>
+</html>   
+

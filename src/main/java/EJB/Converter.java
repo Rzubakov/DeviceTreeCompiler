@@ -1,8 +1,10 @@
 package EJB;
 
 import Entitys.modules.Module;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -25,17 +27,21 @@ public class Converter implements ConverterInt {
         ProcessBuilder builder;
         try {
             if (expansion.equals("dts")) {
-                Files.copy(file.getInputstream(), FileSystems.getDefault().getPath("configs", filename + ".dts"));
-                builder = new ProcessBuilder("cmd.exe", "/c", "dtc -Idts -Odtb -o configs/" + filename + ".dtb" + " configs/" + filename + ".dts");
+                Files.copy(file.getInputstream(), FileSystems.getDefault().getPath("/tmp/", filename + ".dts"));
+                // builder = new ProcessBuilder("cmd.exe", "/c", "dtc -Idts -Odtb -o configs/" + filename + ".dtb" + " configs/" + filename + ".dts");
+                builder = new ProcessBuilder("dtc", "-Idts", "-Odtb", "-o", "tmp/" + filename + ".dtb", "tmp/" + filename + ".dts");
+                builder.redirectOutput(new File("/tmp/out_" + filename + ".txt"));
+                builder.redirectErrorStream(true);
                 builder.start().waitFor();
-                Files.delete(FileSystems.getDefault().getPath("configs", filename + ".dts"));
-                return new File("configs/" + filename + ".dtb");
+                return new File("/tmp/" + filename + ".dtb");
             } else {
-                Files.copy(file.getInputstream(), FileSystems.getDefault().getPath("configs", filename + ".dtb"));
-                builder = new ProcessBuilder("cmd.exe", "/c", "dtc -Idtb -Odts -o configs/" + filename + ".dts" + " configs/" + filename + ".dtb");
+                Files.copy(file.getInputstream(), FileSystems.getDefault().getPath("/tmp/", filename + ".dtb"));
+                // builder = new ProcessBuilder("cmd.exe", "/c", "dtc -Idtb -Odts -o configs/" + filename + ".dts" + " configs/" + filename + ".dtb");
+                builder = new ProcessBuilder("dtc", "-Idtb", "-Odts", "-o", "tmp/" + filename + ".dts", "tmp/" + filename + ".dtb");
+                builder.redirectOutput(new File("/tmp/out_" + filename + ".txt"));
+                builder.redirectErrorStream(true);
                 builder.start().waitFor();
-                Files.delete(FileSystems.getDefault().getPath("configs", filename + ".dtb"));
-                return new File("configs/" + filename + ".dts");
+                return new File("/tmp/" + filename + ".dts");
             }
         } catch (IOException | InterruptedException e) {
             System.out.println(e);

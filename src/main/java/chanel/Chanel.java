@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package chanel;
 
-/**
- *
- * @author Rzubakov
- */
 public interface Chanel {
-    public void getType();
+
+    public String getType();
+    public Integer getSize();
+    public Integer getMethod();
+
 }

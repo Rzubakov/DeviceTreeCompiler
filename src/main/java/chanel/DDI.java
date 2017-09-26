@@ -1,10 +1,9 @@
 package chanel;
 
-public class DDI implements Chanel {
+public class DDI extends AbstractChanel {
 
-    @Override
-    public void getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public DDI() {
+        type = "DDI";
     }
 
 }

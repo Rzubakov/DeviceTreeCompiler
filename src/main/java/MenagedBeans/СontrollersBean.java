@@ -3,46 +3,42 @@ package MenagedBeans;
 import controller.Controller;
 import controller.ControllerFactory;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "controllersBean")
-@SessionScoped
+@ViewScoped
 public class СontrollersBean implements Serializable {
 
     private static final long serialVersionUID = 4325384860998301404L;
 
-    private List<Controller> controllers;
+    @ManagedProperty("#{model}")
+    private ModelBean model;
 
     public СontrollersBean() {
 
     }
 
-    @PostConstruct
-    public void init() {
-        controllers = new ArrayList<>();
+    public List<Controller> getControllers() {
+        return model.getControllers();
     }
 
-    /* Controller */
     public void addController(String type) {
-        System.out.println("Add controller " + type);
-        controllers.add(ControllerFactory.getControllerByType(type));
+        model.addController(ControllerFactory.getControllerByType(type));
     }
 
     public void deleteController(Controller controller) {
-        System.out.println("Del controller " + controller.getType() + " " + controller.getName());
-        controllers.remove(controller);
+        model.deleteController(controller);
     }
 
-    public List<Controller> getControllers() {
-        return controllers;
+    public ModelBean getModel() {
+        return model;
     }
 
-    public void setControllers(List<Controller> controllers) {
-        this.controllers = controllers;
+    public void setModel(ModelBean model) {
+        this.model = model;
     }
 
 }

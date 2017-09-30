@@ -1,16 +1,16 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import module.Module;
 
-public class AbstractController implements Controller {
+public abstract class AbstractController implements Controller {
 
-    protected List<Module> modules;
+    protected List<Module> modules = new ArrayList<>();
     protected String type;
     protected String name;
 
     public AbstractController() {
-
     }
 
     @Override
@@ -54,9 +54,17 @@ public class AbstractController implements Controller {
     }
 
     @Override
-    public void copy(Controller controller) {
-        this.name = controller.getName();
-        this.type = controller.getType();
+    public Module find(Module module) {
+        return modules.get(modules.indexOf(module));
     }
 
+    @Override
+    public void deleteModule(Module module) {
+        modules.remove(modules.indexOf(module));
+    }
+
+    @Override
+    public String toString(){
+        return name+":"+type;
+    }
 }

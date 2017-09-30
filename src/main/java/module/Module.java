@@ -25,15 +25,15 @@ public interface Module {
 
     public void setSize(Integer size);
 
-    public String getType();
-
-    public void setType(String type);
-
     public void addChanel(Chanel chanel);
 
     public Chanel getChanel(int index);
-    
+
     public List<Chanel> getChanels();
 
     public void setChanels(List<Chanel> chanels);
+
+    public String getKind();
+
+    public void setKind(String kind);
 }

@@ -21,5 +21,7 @@ public interface Controller {
 
     public void setName(String name);
     
-    public void copy(Controller controller);
+    public Module find(Module module);
+    
+    public void deleteModule(Module module);
 }

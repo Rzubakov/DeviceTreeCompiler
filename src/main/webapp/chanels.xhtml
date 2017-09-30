@@ -9,7 +9,7 @@
         <ui:define name="content">
             <h:form id="form">
                 <div class="ui-g-12 ui-md-4 ui-lg-4">
-                    <p:dataTable var="controller" value="#{modulesBean.controllers}"  selectionMode="single" selection="#{modulesBean.selectedController}" rowKey="#{controller}">
+                    <p:dataTable var="controller" value="#{modulesBean.controllersBean.controllers}"  selectionMode="single" selection="#{modulesBean.selectedController}" rowKey="#{controller}">
                         <p:ajax event="rowSelect"  update="form:modules" />
                         <p:column headerText="Наименование">
                             <h:outputText value="#{controller.name}" />

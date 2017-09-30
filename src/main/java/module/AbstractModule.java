@@ -1,26 +1,20 @@
 package module;
 
 import chanel.Chanel;
+import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractModule implements Module {
+public abstract class AbstractModule implements Module {
 
-    private Integer index;
-    private String type;
-    private String name;
-    private String vname;
-    private String ts_vname;
-    private Integer size;
-    private List<Chanel> chanels;
+    protected Integer index;
+    protected String name;
+    protected String vname;
+    protected String ts_vname;
+    protected String kind;
+    protected Integer size;
+    private List<Chanel> chanels = new ArrayList<>();
 
-    @Override
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public void setType(String type) {
-        this.type = type;
+    public AbstractModule() {
     }
 
     @Override
@@ -92,5 +86,19 @@ public class AbstractModule implements Module {
     public void setChanels(List<Chanel> chanels) {
         this.chanels = chanels;
     }
-    
+
+    @Override
+    public String getKind() {
+        return kind;
+    }
+
+    @Override
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    @Override
+    public String toString() {
+        return vname;
+    }
 }

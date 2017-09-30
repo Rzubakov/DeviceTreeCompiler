@@ -1,40 +1,38 @@
 package MenagedBeans;
 
+import chanel.Chanel;
 import controller.Controller;
 import java.io.Serializable;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import module.Module;
-import module.ModuleFactory;
 
-@ManagedBean(name = "modulesBean")
+@ManagedBean(name = "chanelsBean")
 @ViewScoped
-public class ModulesBean implements Serializable {
+public class ChanelsBean implements Serializable {
 
     @ManagedProperty("#{model}")
     private ModelBean model;
 
     private Controller selectedController;
+    private Module selectedModule;
 
-    public ModulesBean() {
+    public ChanelsBean() {
     }
 
-    public List<Controller> getControllers() {
-        return model.getControllers();
+    @PostConstruct
+    public void init() {
+
     }
 
-    public void addModule(String type) {
-        selectedController.addModule(ModuleFactory.getModuleByType(type));
-        model.getControllers().forEach(c->{
-            c.getModules().forEach(System.out::println);
-        });
+    public void addChanel(String type) {
+
     }
 
-    public void deleteModule(Module module) {
-        selectedController.deleteModule(module);
+    public void deleteChanel(Chanel chanel) {
+
     }
 
     public Controller getSelectedController() {
@@ -43,6 +41,14 @@ public class ModulesBean implements Serializable {
 
     public void setSelectedController(Controller selectedController) {
         this.selectedController = selectedController;
+    }
+
+    public Module getSelectedModule() {
+        return selectedModule;
+    }
+
+    public void setSelectedModule(Module selectedModule) {
+        this.selectedModule = selectedModule;
     }
 
     public ModelBean getModel() {

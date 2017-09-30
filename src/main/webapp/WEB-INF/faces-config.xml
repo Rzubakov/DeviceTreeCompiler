@@ -23,7 +23,12 @@
             <from-outcome>modules</from-outcome>
             <to-view-id>/modules.xhtml</to-view-id>
             <redirect/>
-        </navigation-case>  
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>chanels</from-outcome>
+            <to-view-id>/chanels.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
         <navigation-case>
             <from-outcome>iec</from-outcome>
             <to-view-id>/iec.xhtml</to-view-id>

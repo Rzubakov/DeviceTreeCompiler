@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/layouts/home.xhtml">
+        <ui:define name="title">Контроллеры</ui:define> 
+        <ui:define name="content">
+            <h:form id="form">
+
+                <div class="ui-g-12 ui-md-12 ui-lg-12">
+                    <p:dataTable id="controllers" var="controller" value="#{controllersBean.controllers}" editable="true" editMode="cell" rowKey="#{controller}" >
+                        <f:facet name="header">Контроллеры</f:facet> 
+                        <p:ajax event="rowSelect"  update="@form" />
+                        <p:column headerText="Тип контроллера" >
+                            <h:outputText value="#{controller.type}" title="Тип контроллера"/>
+                        </p:column> 
+                        <p:column headerText="Наименование" >
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{controller.name}"/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="description" value="#{controller.name}" >
+                                        <f:validateLength minimum="5" maximum="255" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>   
+                        <p:column style="width:50px;text-align: center">
+                            <p:commandButton update="@form"  icon="ui-icon-trash" title="Удалить" actionListener="#{controllersBean.deleteController(controller)}" />            
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton  update="@form" value="МФК-1500" actionListener="#{controllersBean.addController('Mfc1500')}" /> 
+                        </f:facet>
+                    </p:dataTable> 
+                </div>             
+
+            </h:form> 
+
+        </ui:define> 
+    </ui:composition>    
+</html>    

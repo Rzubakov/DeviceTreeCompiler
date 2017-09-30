@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/layouts/home.xhtml">
+        <ui:define name="title">Модули</ui:define> 
+        <ui:define name="content">
+            <h:form id="form">
+                <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <p:dataList value="#{modulesBean.controllers}" var="controller" type="ordered" >
+                        <h:outputText value="#{controller.name}" style="display:inline-block"/>
+                    </p:dataList>      
+                </div>
+            </h:form> 
+ 
+        </ui:define> 
+    </ui:composition>    
+</html>    

@@ -1,16 +1,10 @@
 package EJB;
 
-import Entitys.modules.Module;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import javax.ejb.Stateless;
 import org.primefaces.model.UploadedFile;
 
@@ -49,29 +43,28 @@ public class Converter implements ConverterInt {
         return null;
     }
 
-    @Override
-    public File convert(List<Module> modules) {
-        List<String> config = new ArrayList<>();
-        config.add("/*АО Текон-Инжиниринг*/");
-        config.add("/*Ведущий инженер-программист: Зубаков Р.А.*/");
-        config.add("/*" + Calendar.getInstance().getTime().toString() + "*/");
-        config.add("/dts-v1/;");
-        config.add("/{");
-        config.add("ubus{");
-        config.add("version = \"1.0.0\";");
-        modules.forEach((module) -> {
-            config.addAll(module.getConfig());
-        });
-        config.add("};");
-        config.add("};");
-        try (PrintWriter print = new PrintWriter("c://out.dts")) {
-            config.forEach((line) -> {
-                print.println(line);
-            });
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return null;
-    }
-
+    //   @Override
+    //   public File convert(List<Module> modules) {
+    //       List<String> config = new ArrayList<>();
+    //       config.add("/*АО Текон-Инжиниринг*/");
+    //       config.add("/*Ведущий инженер-программист: Зубаков Р.А.*/");
+    //       config.add("/*" + Calendar.getInstance().getTime().toString() + "*/");
+    //       config.add("/dts-v1/;");
+    //       config.add("/{");
+    //       config.add("ubus{");
+    //       config.add("version = \"1.0.0\";");
+    //       modules.forEach((module) -> {
+    //           config.addAll(module.getConfig());
+    //       });
+    //       config.add("};");
+    //       config.add("};");
+    //       try (PrintWriter print = new PrintWriter("c://out.dts")) {
+    //           config.forEach((line) -> {
+    //               print.println(line);
+    //           });
+    //      } catch (Exception e) {
+    //           System.out.println(e);
+    //       }
+    //      return null;
+    //  }
 }

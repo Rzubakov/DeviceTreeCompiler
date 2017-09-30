@@ -1,6 +1,19 @@
 package chanel;
 
-public interface ChanelFactory {
+public class ChanelFactory {
 
-    public Chanel getChanelByType(String type);
+    public static Chanel getChanelByType(String type) {
+        switch (type) {
+            case "SDI":
+                return new SDI();
+            case "DDI":
+                return new DDI();
+            case "SDO":
+                return new SDO();
+            case "AI":
+                return new AI();
+        }
+        throw new RuntimeException("unknown type chanel" + type);
+    }
+
 }

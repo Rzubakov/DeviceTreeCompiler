@@ -15,10 +15,15 @@
             <redirect/>
         </navigation-case>  
         <navigation-case>
-            <from-outcome>ubus</from-outcome>
-            <to-view-id>/ubus.xhtml</to-view-id>
+            <from-outcome>controllers</from-outcome>
+            <to-view-id>/controllers.xhtml</to-view-id>
             <redirect/>
-        </navigation-case>   
+        </navigation-case>  
+        <navigation-case>
+            <from-outcome>modules</from-outcome>
+            <to-view-id>/modules.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>  
         <navigation-case>
             <from-outcome>iec</from-outcome>
             <to-view-id>/iec.xhtml</to-view-id>

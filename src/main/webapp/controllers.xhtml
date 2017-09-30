@@ -10,9 +10,12 @@
             <h:form id="form">
 
                 <div class="ui-g-12 ui-md-12 ui-lg-12">
-                    <p:dataTable id="controllers" var="controller" value="#{controllersBean.controllers}" editable="true" editMode="cell" rowKey="#{controller}" >
+                    <p:dataTable id="controllers" var="controller" value="#{controllersBean.controllers}" editable="true" editMode="cell" rowKey="#{controller.id}" >
                         <f:facet name="header">Контроллеры</f:facet> 
                         <p:ajax event="rowSelect"  update="@form" />
+                        <p:column headerText="id" >
+                            <h:outputText value="#{controller.id}" title="id"/>
+                        </p:column>                       
                         <p:column headerText="Тип контроллера" >
                             <h:outputText value="#{controller.type}" title="Тип контроллера"/>
                         </p:column> 

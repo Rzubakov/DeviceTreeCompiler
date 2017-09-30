@@ -5,50 +5,47 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="/layouts/home.xhtml">
-        <ui:define name="title">Модули</ui:define> 
+        <ui:define name="title">Каналы</ui:define> 
         <ui:define name="content">
             <h:form id="form">
-                <div class="ui-g-12 ui-md-4 ui-lg-4">
-                    <p:dataTable var="controller" value="#{modulesBean.controllersBean.controllers}"  selectionMode="single" selection="#{modulesBean.selectedController}" rowKey="#{controller}">
+
+                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                    <p:dataTable var="controller" value="#{chanelsBean.controllers}"  selectionMode="single" selection="#{chanelsBean.selectedController}" rowKey="#{controller.id}">
                         <p:ajax event="rowSelect"  update="form:modules" />
+                        <f:facet name="header">Контроллеры</f:facet>
                         <p:column headerText="Наименование">
-                            <h:outputText value="#{controller.name}" />
+                            <h:outputText value="#{controller.id}:#{controller.name}" />
                         </p:column>
-                    </p:dataTable>      
+                    </p:dataTable> 
+                    <p:separator />
+                    <p:dataTable id="modules" var="module" value="#{chanelsBean.selectedController.modules}"  selectionMode="single" selection="#{chanelsBean.selectedModule}" rowKey="#{module.id}">
+                        <p:ajax event="rowSelect" />
+                        <f:facet name="header">Модули</f:facet>
+                        <p:column headerText="Наименование">
+                            <h:outputText value="#{module.index}:#{module.name}" />
+                        </p:column>
+                    </p:dataTable>                   
                 </div>
-                <div class="ui-g-12 ui-md-8 ui-lg-8">
-                    <p:dataTable id="modules" var="module" value="#{modulesBean.selectedController.modules}"  >
-                        <p:column width="30">
-                            <p:graphicImage library="images" name="#{module.name}.png" width="30"/>
-                        </p:column>  
-                        <p:column headerText="#">
-                            <h:outputText value="#{module.index}" />
+
+
+
+                <div class="ui-g-12 ui-md-9 ui-lg-9">
+                    <p:dataTable id="chanels" var="chanel" value="#{chanelsBean.selectedModule.chanels}"   rowKey="#{chanel}">
+                        <p:ajax event="rowSelect" />
+                        <f:facet name="header">Каналы модуля</f:facet>
+                        <p:column headerText="type">
+                            <h:outputText value="#{chanel.type}" />
                         </p:column>
-                        <p:column headerText="Имя">
-                            <h:outputText value="#{module.name}" />
-                        </p:column>
-                        <p:column headerText="Размер">
-                            <h:outputText value="#{module.size}" />
-                        </p:column>  
-                        <p:column headerText="ts_vname">
-                            <h:outputText value="#{module.ts_vname}" />
-                        </p:column>  
-                        <p:column headerText="vname">
-                            <h:outputText value="#{module.vname}" />
-                        </p:column>   
-                        <p:column headerText="kind">
-                            <h:outputText value="#{module.kind}" />
-                        </p:column>  
-                        <p:column style="width:50px;text-align: center">
-                            <p:commandButton update="@form"  icon="ui-icon-trash" title="Удалить" actionListener="#{modulesBean.deleteModule(module)}" />            
-                        </p:column>                      
                         <f:facet name="footer">
-                            <p:commandButton  update="modules" value="DI32" actionListener="#{modulesBean.addModule('DI32')}"   disabled="#{modulesBean.selectedController == null}" />
-                            <p:commandButton  update="modules" value="DO32" actionListener="#{modulesBean.addModule('DO32')}"   disabled="#{modulesBean.selectedController == null}" />
-                            <p:commandButton  update="modules" value="AIG16" actionListener="#{modulesBean.addModule('AIG16')}" disabled="#{modulesBean.selectedController == null}" />
-                        </f:facet>
-                    </p:dataTable>      
-                </div>
+                            <p:commandButton  update="chanels" value="AI"   actionListener="#{chanelsBean.addChanel('AI')}" />
+                            <p:commandButton  update="chanels" value="SDI"  actionListener="#{chanelsBean.addChanel('SDI')}" />
+                            <p:commandButton  update="chanels" value="DDI"  actionListener="#{chanelsBean.addChanel('DDI')}" />
+                            <p:commandButton  update="chanels" value="SDO"  actionListener="#{chanelsBean.addChanel('SDO')}" />
+                            <p:commandButton  update="chanels" value="DDO"  actionListener="#{chanelsBean.addChanel('DDO')}" />
+                        </f:facet>                   
+                    </p:dataTable>   
+                </div> 
+
             </h:form> 
 
         </ui:define> 

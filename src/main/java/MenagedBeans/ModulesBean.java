@@ -28,9 +28,9 @@ public class ModulesBean implements Serializable {
 
     public void addModule(String type) {
         selectedController.addModule(ModuleFactory.getModuleByType(type));
-        model.getControllers().forEach(c->{
-            c.getModules().forEach(System.out::println);
-        });
+        for (int i = 0; i < selectedController.getModules().size(); i++) {
+            selectedController.getModules().get(i).setId(i);
+        }
     }
 
     public void deleteModule(Module module) {

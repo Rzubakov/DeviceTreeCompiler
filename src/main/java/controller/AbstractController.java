@@ -6,6 +6,7 @@ import module.Module;
 
 public abstract class AbstractController implements Controller {
 
+    protected Integer id;
     protected List<Module> modules = new ArrayList<>();
     protected String type;
     protected String name;
@@ -13,6 +14,16 @@ public abstract class AbstractController implements Controller {
     public AbstractController() {
     }
 
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }   
+    
     @Override
     public void addModule(Module module) {
         modules.add(module);

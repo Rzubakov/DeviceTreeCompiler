@@ -27,8 +27,11 @@ public class ModelBean implements Serializable {
     public void addController(Controller controller){
         controllers.add(controller);
     }
+    
     public void deleteController(Controller controller){
         controllers.remove(controller);
     }   
+    
+
     
 }

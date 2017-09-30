@@ -1,9 +1,10 @@
 package MenagedBeans;
 
 import chanel.Chanel;
+import chanel.ChanelFactory;
 import controller.Controller;
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -22,13 +23,12 @@ public class ChanelsBean implements Serializable {
     public ChanelsBean() {
     }
 
-    @PostConstruct
-    public void init() {
-
+    public List<Controller> getControllers() {
+        return model.getControllers();
     }
 
     public void addChanel(String type) {
-
+        selectedModule.addChanel(ChanelFactory.getChanelByType(type));
     }
 
     public void deleteChanel(Chanel chanel) {

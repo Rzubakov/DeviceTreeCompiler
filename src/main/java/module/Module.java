@@ -5,6 +5,10 @@ import java.util.List;
 
 public interface Module {
 
+    public Integer getId();
+
+    public void setId(Integer id);
+
     public Integer getIndex();
 
     public void setIndex(Integer index);

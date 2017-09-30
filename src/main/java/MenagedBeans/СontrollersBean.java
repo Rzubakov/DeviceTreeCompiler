@@ -27,6 +27,9 @@ public class СontrollersBean implements Serializable {
 
     public void addController(String type) {
         model.addController(ControllerFactory.getControllerByType(type));
+        for (int i = 0; i < model.getControllers().size(); i++) {
+            model.getControllers().get(i).setId(i);
+        }
     }
 
     public void deleteController(Controller controller) {

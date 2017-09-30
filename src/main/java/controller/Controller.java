@@ -5,6 +5,10 @@ import module.Module;
 
 public interface Controller {
 
+    public Integer getId();
+
+    public void setId(Integer id);
+
     public void addModule(Module module);
 
     public Module getModule(int index);
@@ -20,8 +24,8 @@ public interface Controller {
     public String getName();
 
     public void setName(String name);
-    
+
     public Module find(Module module);
-    
+
     public void deleteModule(Module module);
 }

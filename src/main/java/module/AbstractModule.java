@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class AbstractModule implements Module {
 
+    protected Integer id;
     protected Integer index;
     protected String name;
     protected String vname;
@@ -15,6 +16,16 @@ public abstract class AbstractModule implements Module {
     private List<Chanel> chanels = new ArrayList<>();
 
     public AbstractModule() {
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -101,4 +112,5 @@ public abstract class AbstractModule implements Module {
     public String toString() {
         return vname;
     }
+
 }

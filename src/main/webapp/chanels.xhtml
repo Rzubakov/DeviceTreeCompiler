@@ -8,10 +8,9 @@
         <ui:define name="title">Каналы</ui:define> 
         <ui:define name="content">
             <h:form id="form">
-
                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                     <p:dataTable var="controller" value="#{chanelsBean.controllers}"  selectionMode="single" selection="#{chanelsBean.selectedController}" rowKey="#{controller.id}">
-                        <p:ajax event="rowSelect"  update="form:modules" />
+                        <p:ajax event="rowSelect"  update="form:modules form:chanels" listener="#{chanelsBean.resetModule()}"/>
                         <f:facet name="header">Контроллеры</f:facet>
                         <p:column headerText="Наименование">
                             <h:outputText value="#{controller.id}:#{controller.name}" />
@@ -19,33 +18,202 @@
                     </p:dataTable> 
                     <p:separator />
                     <p:dataTable id="modules" var="module" value="#{chanelsBean.selectedController.modules}"  selectionMode="single" selection="#{chanelsBean.selectedModule}" rowKey="#{module.id}">
-                        <p:ajax event="rowSelect" />
+                        <p:ajax event="rowSelect" update="form:chanels"/>
                         <f:facet name="header">Модули</f:facet>
+                        <p:column headerText="id">
+                            <h:outputText value="#{module.id}" />
+                        </p:column> 
                         <p:column headerText="Наименование">
-                            <h:outputText value="#{module.index}:#{module.name}" />
+                            <h:outputText value="#{module.name}" />
                         </p:column>
                     </p:dataTable>                   
                 </div>
-
-
-
                 <div class="ui-g-12 ui-md-9 ui-lg-9">
-                    <p:dataTable id="chanels" var="chanel" value="#{chanelsBean.selectedModule.chanels}"   rowKey="#{chanel}">
+                    <p:dataTable id="chanels" var="chanel" value="#{chanelsBean.selectedModule.chanels}"   rowKey="#{chanel.id}" editable="true">
                         <p:ajax event="rowSelect" />
                         <f:facet name="header">Каналы модуля</f:facet>
-                        <p:column headerText="type">
-                            <h:outputText value="#{chanel.type}" />
+
+                        <p:column headerText="id" width="100">
+                            <h:outputText value="#{chanel.id}" title="id канала"/>
+                        </p:column>  
+
+                        <p:column headerText="method" width="100">
+                            <h:outputText value="#{chanel.method}" title="Метод обработки значения канала  –  целое число, идентифицирующее способ обработки значения."/>
+                        </p:column>   
+
+                        <p:column headerText="debounce" rendered="#{chanelsBean.selectedModule.type == 'DI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.debounce}" title="debounce - параметр фильтра антидребезга в модуле УСО – знаковое целое в диапазоне от 0 до 255." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="debounce" value="#{chanel.debounce}" >
+                                        <f:validateLongRange minimum="0" maximum="255" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>  
+                        <p:column headerText="T_acc" rendered="#{chanelsBean.selectedModule.type == 'DI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.t_acc}" title="T_acc – период накопления – беззнаковое целое от 0 до 2000000000. Задает период мониторинга для алгоритма «подавления колебаний» в миллисекундах (мс); 0 отключает алгоритм." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="t_acc" value="#{chanel.t_acc}">
+                                        <f:validateLongRange minimum="0" maximum="2000000000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> 
+                        <p:column headerText="N_acc" rendered="#{chanelsBean.selectedModule.type == 'DI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.n_acc}" title="N_acc– порог накопления– беззнаковое целое от 2 до 255. Задает порог накопления для алгоритма «подавления колебаний»." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="n_acc" value="#{chanel.n_acc}">
+                                        <f:validateLongRange minimum="0" maximum="255" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> 
+                        <p:column headerText="T_relax" rendered="#{chanelsBean.selectedModule.type == 'DI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.t_relax}" title="T_relax– время возврата– беззнаковое целое от 1 до 2000000000. Задает период возврата для алгоритма «подавления колебаний» в миллисекундах. " /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="t_relax" value="#{chanel.t_relax}" >
+                                        <f:validateLongRange minimum="1" maximum="2000000000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> 
+
+                        <p:column headerText="invert" rendered="#{chanelsBean.selectedModule.type == 'DI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.invert}" title="invert – инверсия – логическое значение (представляется целыми числами 0 или 1). Если инверсия включена(1), то значение дискретного сигнала будет инвертировано."/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="invert" value="#{chanel.invert}">
+                                        <f:validateLongRange minimum="0" maximum="1" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> 
+                        <p:column headerText="T_interim" rendered="#{chanelsBean.selectedModule.type == 'DI' or chanelsBean.selectedModule.type == 'DO'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.t_interim}" title="T_interim–  таймаут  промежуточного  положения– беззнаковое  целое  от 0 до 2000000000."/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="t_interim" value="#{chanel.t_interim}"  disabled="#{chanel.method eq '1' or chanel.method  eq '2'}" >
+                                        <f:validateLongRange minimum="0" maximum="2000000000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> 
+
+                        <p:column headerText="filter" rendered="#{chanelsBean.selectedModule.type == 'AI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.filter}" title="filter – тип фильтра в модуле УСО – целое от 0 до 2. 0 – выключен; 1 – ограничение по скорости; 2 – апериодическое звено." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="filter" value="#{chanel.filter}" >
+                                        <f:validateLongRange minimum="0" maximum="2" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
                         </p:column>
+                        <p:column headerText="T_filter" rendered="#{chanelsBean.selectedModule.type == 'AI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.t_filter}" title="T_filter – параметр фильтра в модуле УСО - знаковое целое в диапазоне от –32768 до +32767." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="t_filter" value="#{chanel.t_filter}" >
+                                        <f:validateLongRange  maximum="32767" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="zero_range" rendered="#{chanelsBean.selectedModule.type == 'AI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.zero_range}" title="zero_range – порог нулевого значения– беззнаковое целое от 0 до 100000. Задает порог для фильтра «Контроль нулевого значения» в единицах 0,001 % от полного диапазона 0-16383; 0 отключает фильтр." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="zero_range" value="#{chanel.zero_range}"  >
+                                        <f:validateLongRange minimum="0" maximum="100000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>     
+                        <p:column headerText="sw_threshold" rendered="#{chanelsBean.selectedModule.type == 'AI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.sw_threshold}" title="sw_threshold – порог  обнаружения  переключения– беззнаковое  целое  от 0 до 100000 или 4294967295. Задает порог для алгоритма «обнаружения переключений» в единицах 0,001 % от полного диапазона 0-16383; 4294967295 отключает обнаружение переключений." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="sw_threshold" value="#{chanel.sw_threshold}" >
+                                        <f:validateLongRange minimum="0" maximum="100000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>   
+                        <p:column headerText="threshold" rendered="#{chanelsBean.selectedModule.type == 'AI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.threshold}" title="threshold – порог интегральной мертвой зоны– беззнаковое целое от 0 до 100000 или 4294967295. Задает порог для алгоритма «интегральной мертвой зоны» в единицах 0,001 % от полного диапазона 0-16383; 4294967295 отключает алгоритм."/></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="threshold" value="#{chanel.threshold}" >
+                                        <f:validateLongRange minimum="0" maximum="100000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> 
+                        <p:column headerText="T_periodic" rendered="#{chanelsBean.selectedModule.type == 'AI'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.t_periodic}" title="T_periodic– период циклической передачи – беззнаковое целое от 0 до 2000000000. Задает период циклической передачи значения в миллисекундах(мс); 0 отключает циклическую передачу. " /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="t_periodic" value="#{chanel.t_periodic}" >
+                                        <f:validateLongRange minimum="0" maximum="2000000000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>                                              
+
+
+                        <p:column headerText="type" rendered="#{chanelsBean.selectedModule.type == 'DO'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.type}" title="type – тип выхода– целое число от 0 до 2." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="type" value="#{chanel.type}"  disabled="#{chanel.method == 5}" >
+                                        <f:validateLongRange minimum="0" maximum="2" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="T_pulse" rendered="#{chanelsBean.selectedModule.type == 'DO'}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{chanel.t_pulse}" title="T_pulse– время импульса – беззнаковое целое от 1 до 2000000000. Только для выхода типа OnlyOn или OnlyOff. Задает длительность импульса в миллисекундах(мс)." /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="t_pulse" value="#{chanel.t_pulse}" >
+                                        <f:validateLongRange minimum="1" maximum="2000000000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="T_delay" rendered="#{chanelsBean.selectedModule.type == 'DO'}">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{chanel.t_delay}" title="
+                                                  T_delay– задержка выключения – беззнаковое целое от 0 до 2000000000. Только \n
+                                                  для выхода типа OnlyOn или OnlyOff. Время задается в миллисекундах(мс). Если в \n
+                                                  процессе формирования импульса подана команда вывода '0', формирование импульса \n
+                                                  будет завершено либо через T_delay мс после подачи команды вывода '0', \n
+                                                  либо когда общая длина импульса составит T_pulse мс, в зависимости от того, что наступит раньше. 
+                                                  "/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="t_delay" value="#{chanel.t_delay}" >
+                                        <f:validateLongRange minimum="0" maximum="2000000000" />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>                       
+
+
                         <f:facet name="footer">
-                            <p:commandButton  update="chanels" value="AI"   actionListener="#{chanelsBean.addChanel('AI')}" />
-                            <p:commandButton  update="chanels" value="SDI"  actionListener="#{chanelsBean.addChanel('SDI')}" />
-                            <p:commandButton  update="chanels" value="DDI"  actionListener="#{chanelsBean.addChanel('DDI')}" />
-                            <p:commandButton  update="chanels" value="SDO"  actionListener="#{chanelsBean.addChanel('SDO')}" />
-                            <p:commandButton  update="chanels" value="DDO"  actionListener="#{chanelsBean.addChanel('DDO')}" />
+                            <p:commandButton  update="chanels" value="AI"   disabled="#{chanelsBean.selectedModule.type != 'AI'}" actionListener="#{chanelsBean.addChanel('AI')}" />
+                            <p:commandButton  update="chanels" value="SDI"  disabled="#{chanelsBean.selectedModule.type != 'DI'}" actionListener="#{chanelsBean.addChanel('SDI')}" />
+                            <p:commandButton  update="chanels" value="DDI"  disabled="#{chanelsBean.selectedModule.type != 'DI'}" actionListener="#{chanelsBean.addChanel('DDI')}" />
+                            <p:commandButton  update="chanels" value="SDO"  disabled="#{chanelsBean.selectedModule.type != 'DO'}" actionListener="#{chanelsBean.addChanel('SDO')}" />
+                            <p:commandButton  update="chanels" value="DDO"  disabled="#{chanelsBean.selectedModule.type != 'DO'}" actionListener="#{chanelsBean.addChanel('DDO')}" />
                         </f:facet>                   
                     </p:dataTable>   
                 </div> 
-
             </h:form> 
 
         </ui:define> 

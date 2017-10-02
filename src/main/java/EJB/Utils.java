@@ -1,17 +1,20 @@
 package EJB;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.Calendar;
+import java.util.Properties;
 import javax.ejb.Stateless;
 import org.primefaces.model.UploadedFile;
 
 @Stateless
-public class Converter implements ConverterInt {
+public class Utils implements UtilsInt {
 
-    public Converter() {
+    public Utils() {
     }
 
     @Override
@@ -67,4 +70,14 @@ public class Converter implements ConverterInt {
     //       }
     //      return null;
     //  }
+    @Override
+    public Properties getConfig() {
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileInputStream("config.properties"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return properties;
+    }
 }

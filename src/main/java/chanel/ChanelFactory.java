@@ -1,5 +1,7 @@
 package chanel;
 
+import java.util.Properties;
+
 public class ChanelFactory {
 
     public static Chanel getChanelByType(String type) {
@@ -10,10 +12,12 @@ public class ChanelFactory {
                 return new DDI();
             case "SDO":
                 return new SDO();
+            case "DDO":
+                return new DDO();
             case "AI":
                 return new AI();
         }
-        throw new RuntimeException("unknown type chanel" + type);
+        throw new RuntimeException("unknown type chanel " + type);
     }
 
 }

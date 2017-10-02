@@ -22,8 +22,8 @@ public abstract class AbstractController implements Controller {
     @Override
     public void setId(Integer id) {
         this.id = id;
-    }   
-    
+    }
+
     @Override
     public void addModule(Module module) {
         modules.add(module);
@@ -75,7 +75,7 @@ public abstract class AbstractController implements Controller {
     }
 
     @Override
-    public String toString(){
-        return name+":"+type;
+    public String toString() {
+        return name + ":" + type;
     }
 }

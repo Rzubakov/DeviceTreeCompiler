@@ -5,6 +5,10 @@ import java.util.List;
 
 public interface Module {
 
+    public String getType();
+
+    public void setType(String type);
+
     public Integer getId();
 
     public void setId(Integer id);
@@ -40,4 +44,6 @@ public interface Module {
     public String getKind();
 
     public void setKind(String kind);
+    
+    public String getConfig();
 }

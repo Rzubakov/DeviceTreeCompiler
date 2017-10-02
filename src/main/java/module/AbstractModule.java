@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractModule implements Module {
-
+    protected String type;
     protected Integer id;
     protected Integer index;
     protected String name;
@@ -16,6 +16,16 @@ public abstract class AbstractModule implements Module {
     private List<Chanel> chanels = new ArrayList<>();
 
     public AbstractModule() {
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
@@ -113,4 +123,10 @@ public abstract class AbstractModule implements Module {
         return vname;
     }
 
+    @Override
+    public String getConfig() {
+        return null;
+    }
+
+  
 }

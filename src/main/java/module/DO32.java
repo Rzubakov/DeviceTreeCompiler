@@ -3,6 +3,7 @@ package module;
 public class DO32 extends AbstractModule {
 
     public DO32() {
+        this.type = "DO";
         this.index = 0;
         this.name = "DO32";
         this.size = 32;

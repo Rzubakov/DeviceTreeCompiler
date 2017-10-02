@@ -5,7 +5,7 @@
  */
 package MenagedBeans;
 
-import EJB.ConverterInt;
+import EJB.UtilsInt;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,13 +30,14 @@ public class ConverterBean implements Serializable {
     }
 
     @EJB
-    private ConverterInt converterEjb;
+    private UtilsInt utils;
+    
     private File tfile;
     private StreamedContent dfile;
 
     public void convert(FileUploadEvent event) {
         try {
-            tfile = converterEjb.convert(event.getFile());
+            tfile = utils.convert(event.getFile());
             dfile = new DefaultStreamedContent(new FileInputStream(tfile), "text/plain", tfile.getName());
             FacesContext.getCurrentInstance().addMessage("messages", new FacesMessage(FacesMessage.SEVERITY_INFO, tfile.getName(), ""));
         } catch (FileNotFoundException e) {

@@ -3,6 +3,7 @@ package module;
 public class AIG16 extends AbstractModule {
 
     public AIG16() {
+        this.type = "AI";
         this.index = 0;
         this.name = "AIG16";
         this.size = 16;

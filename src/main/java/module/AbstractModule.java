@@ -2,9 +2,11 @@ package module;
 
 import chanel.Chanel;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public abstract class AbstractModule implements Module {
+
     protected String type;
     protected Integer id;
     protected Integer index;
@@ -124,9 +126,12 @@ public abstract class AbstractModule implements Module {
     }
 
     @Override
-    public String getConfig() {
-        return null;
+    public List<String> getConfig() {
+        List<String> config = new ArrayList<>();
+        chanels.forEach((chanel) -> {
+            config.add(chanel.getConfig());
+        });
+        return config;
     }
 
-  
 }

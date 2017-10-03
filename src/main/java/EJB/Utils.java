@@ -1,13 +1,12 @@
 package EJB;
 
+import controller.Controller;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.Calendar;
-import java.util.Properties;
+import java.util.List;
 import javax.ejb.Stateless;
 import org.primefaces.model.UploadedFile;
 
@@ -71,13 +70,17 @@ public class Utils implements UtilsInt {
     //      return null;
     //  }
     @Override
-    public Properties getConfig() {
-        Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream("config.properties"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return properties;
+    public File getDtcFile(List<Controller> controller) {
+
+        controller.forEach(c -> {
+            c.getConfig().forEach(System.out::println);
+        });
+
+        return null;
+    }
+
+    @Override
+    public File getDtbFile(List<Controller> controllers) {
+        return null;
     }
 }

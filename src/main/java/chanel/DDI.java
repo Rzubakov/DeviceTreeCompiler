@@ -75,6 +75,6 @@ public class DDI extends AbstractChanel {
 
     @Override
     public String getConfig() {
-        return id + " {" + method + "; " + debounce + "; " + T_acc + "; " + N_acc + "; " + T_relax + "; " + invert + "; " + T_interim + "; };";
+        return id + " {" + "method=<" + method + ">; debounce=<" + debounce + ">; T_acc=<" + T_acc + ">; N_acc=<" + N_acc + ">; T_relax=<" + T_relax + ">; invert=<" + invert + ">; T_interim=<" + T_interim + ">; };";
     }
 }

@@ -74,7 +74,7 @@ public class AI extends AbstractChanel {
     }
 
     @Override
-    public String getConfig(){
-        return id + " {" + method + "; " + filter + "; " + T_filter + "; " + zero_range + "; " + sw_threshold + "; " + threshold + "; " + T_periodic + "; };";
+    public String getConfig() {
+        return id + " {" + "method=<" + method + ">; filter=<" + filter + ">; T_filter=<" + T_filter + ">; zero_range=<" + zero_range + ">; sw_threshold=<" + sw_threshold + ">; threshold=<" + threshold + ">; T_periodic=<" + T_periodic + ">; };";
     }
 }

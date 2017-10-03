@@ -41,7 +41,17 @@ public class SDO extends AbstractChanel {
     }
 
     @Override
+    public Integer getT_interim() {
+        return T_interim;
+    }
+
+    @Override
+    public void setT_interim(Integer T_interim) {
+        this.T_interim = T_interim;
+    }
+
+    @Override
     public String getConfig() {
-        return id + " {" + method + "; " + type + "; " + T_pulse + "; " + T_delay + "; };";
+        return id + " {" + "method=<" + method + ">; type=<" + type + ">; T_pulse=<" + T_pulse + ">; T_delay=<" + T_delay + ">; };";
     }
 }

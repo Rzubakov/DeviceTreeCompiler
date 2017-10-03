@@ -1,12 +1,10 @@
 package MenagedBeans;
 
-import EJB.UtilsInt;
 import chanel.Chanel;
 import chanel.ChanelFactory;
 import controller.Controller;
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -17,7 +15,7 @@ import module.Module;
 public class ChanelsBean implements Serializable {
 
     @ManagedProperty("#{model}")
-    
+
     private ModelBean model;
     private Controller selectedController;
     private Module selectedModule;
@@ -31,6 +29,9 @@ public class ChanelsBean implements Serializable {
 
     public void addChanel(String type) {
         selectedModule.addChanel(ChanelFactory.getChanelByType(type));
+        for (int i = 0; i < selectedModule.getChanels().size(); i++) {
+            selectedModule.getChanels().get(i).setId(i);
+        }
     }
 
     public void deleteChanel(Chanel chanel) {
@@ -61,7 +62,8 @@ public class ChanelsBean implements Serializable {
     public void setModel(ModelBean model) {
         this.model = model;
     }
-    public void resetModule(){
+
+    public void resetModule() {
         selectedModule = null;
     }
 }

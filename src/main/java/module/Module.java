@@ -45,5 +45,5 @@ public interface Module {
 
     public void setKind(String kind);
     
-    public String getConfig();
+    public List<String> getConfig();
 }

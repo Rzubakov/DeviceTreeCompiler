@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import module.Module;
 
@@ -77,5 +78,27 @@ public abstract class AbstractController implements Controller {
     @Override
     public String toString() {
         return name + ":" + type;
+    }
+
+    @Override
+    public List<String> getConfig() {
+        List<String> config = new ArrayList<>();
+        config.add("/*АО Текон-Инжиниринг*/");
+        config.add("/*Ведущий инженер-программист: Зубаков Р.А.*/");
+        config.add("/*Проект: " + name + "*/");
+        config.add("/*" + Calendar.getInstance().getTime().toString() + "*/");
+        config.add("/*Тип: " + type + "*/");
+        config.add("/dts-v1/;");
+        config.add("/{");
+        config.add("ubus{");
+        config.add("version = \"1.0.0\";");
+        modules.forEach((module) -> {
+            module.getConfig().forEach(cfg -> {
+                config.add(cfg);
+            });
+        });
+        config.add("};");
+        config.add("};");
+        return config;
     }
 }

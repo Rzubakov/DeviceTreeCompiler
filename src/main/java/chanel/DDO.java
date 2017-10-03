@@ -11,6 +11,16 @@ public class DDO extends AbstractChanel {
     }
 
     @Override
+    public Integer getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    @Override
     public Integer getT_interim() {
         return T_interim;
     }
@@ -42,6 +52,6 @@ public class DDO extends AbstractChanel {
 
     @Override
     public String getConfig() {
-        return id + " {" + method + "; " + T_pulse + "; " + T_delay + "; " + T_interim + "; };";
+        return id + " {" + "method=<" + method + ">; T_pulse=<" + T_pulse + ">; T_delay=<" + T_delay + ">; T_interim=<" + T_interim + ">; };";
     }
 }

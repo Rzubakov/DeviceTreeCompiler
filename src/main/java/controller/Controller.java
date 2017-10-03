@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import module.Module;
 
@@ -28,4 +29,6 @@ public interface Controller {
     public Module find(Module module);
 
     public void deleteModule(Module module);
+
+    public List<String> getConfig();
 }

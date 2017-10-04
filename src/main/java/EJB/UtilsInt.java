@@ -10,7 +10,7 @@ public interface UtilsInt {
 
     public File convert(UploadedFile file);
 
-    public File getDtcFile(List<Controller> controllers);
+    public File getDtsFile(List<Controller> controllers);
 
     public File getDtbFile(List<Controller> controllers);
 

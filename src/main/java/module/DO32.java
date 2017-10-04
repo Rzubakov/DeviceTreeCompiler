@@ -10,5 +10,6 @@ public class DO32 extends AbstractModule {
         this.ts_vname = "DO32";
         this.vname = "DO32/o";
         this.kind = "<0x0>";
+        this.currentSize=0;
     }
 }

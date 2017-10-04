@@ -2,7 +2,6 @@ package module;
 
 import chanel.Chanel;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public abstract class AbstractModule implements Module {
@@ -15,6 +14,8 @@ public abstract class AbstractModule implements Module {
     protected String ts_vname;
     protected String kind;
     protected Integer size;
+    protected Integer currentSize;
+
     private List<Chanel> chanels = new ArrayList<>();
 
     public AbstractModule() {
@@ -42,6 +43,7 @@ public abstract class AbstractModule implements Module {
 
     @Override
     public void addChanel(Chanel chanel) {
+        currentSize += chanel.getSize();
         chanels.add(chanel);
     }
 
@@ -126,11 +128,31 @@ public abstract class AbstractModule implements Module {
     }
 
     @Override
+    public Integer getCurrentSize() {
+        return currentSize;
+    }
+
+    @Override
+    public void setCurrentSize(Integer currentSize) {
+        this.currentSize = currentSize;
+    }
+
+    @Override
+    public Boolean isFull() {
+        return currentSize >= size;
+    }
+
+    @Override
     public List<String> getConfig() {
         List<String> config = new ArrayList<>();
+        config.add("DI32@" + id * 0.01 + "{");
+        config.add("vname=\"" + vname + "\";");
+        config.add("ts_vname=\"" + ts_vname + "\";");
+        config.add("kind=\"" + kind + "\";");
         chanels.forEach((chanel) -> {
             config.add(chanel.getConfig());
         });
+        config.add("};");
         return config;
     }
 

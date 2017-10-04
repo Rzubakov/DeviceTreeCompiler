@@ -21,7 +21,7 @@ public class ExporterBean implements Serializable {
     }
 
     public File exportDtcFile(){
-        return utils.getDtcFile(model.getControllers());
+        return utils.getDtsFile(model.getControllers());
     }
     
     

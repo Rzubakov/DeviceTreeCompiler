@@ -10,6 +10,7 @@ public class AIG16 extends AbstractModule {
         this.ts_vname = "AIG16";
         this.vname = "AIG16/i";
         this.kind = "<0x0>";
+        this.currentSize=0;
     }
 
 }

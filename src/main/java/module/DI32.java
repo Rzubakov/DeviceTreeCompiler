@@ -10,5 +10,6 @@ public class DI32 extends AbstractModule {
         this.ts_vname = "DI32";
         this.vname = "DI32/i";
         this.kind = "<0x0>";
+        this.currentSize=0;
     }
 }

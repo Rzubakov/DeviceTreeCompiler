@@ -44,6 +44,14 @@ public interface Module {
     public String getKind();
 
     public void setKind(String kind);
-    
+
     public List<String> getConfig();
+
+    public Integer getCurrentSize();
+
+    public void setCurrentSize(Integer currentSize);
+
+    public Boolean isFull();
+
+
 }

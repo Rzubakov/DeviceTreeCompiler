@@ -24,15 +24,15 @@
                         <p:column headerText="id">
                             <h:outputText value="#{module.id}" />
                         </p:column> 
+                        <p:column headerText="size">
+                            <h:outputText value="#{module.currentSize}/#{module.size}" />
+                        </p:column>     
                         <p:column headerText="index">
                             <h:outputText value="#{module.index}" />
                         </p:column>
                         <p:column headerText="Имя">
                             <h:outputText value="#{module.name}" />
-                        </p:column>
-                        <p:column headerText="Размер">
-                            <h:outputText value="#{module.size}" />
-                        </p:column>  
+                        </p:column> 
                         <p:column headerText="ts_vname">
                             <h:outputText value="#{module.ts_vname}" />
                         </p:column>  

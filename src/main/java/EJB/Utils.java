@@ -3,6 +3,7 @@ package EJB;
 import controller.Controller;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.Calendar;
@@ -70,17 +71,24 @@ public class Utils implements UtilsInt {
     //      return null;
     //  }
     @Override
-    public File getDtcFile(List<Controller> controller) {
+    public File getDtsFile(List<Controller> controller) {
 
         controller.forEach(c -> {
-            c.getConfig().forEach(System.out::println);
+            try (PrintWriter print = new PrintWriter("c://Testing/" + c.getName() + ".dts")) {
+                c.getConfig().forEach(cfg -> {
+                    print.println(cfg);
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         return null;
     }
 
     @Override
-    public File getDtbFile(List<Controller> controllers) {
+    public File getDtbFile(List<Controller> controllers
+    ) {
         return null;
     }
 }

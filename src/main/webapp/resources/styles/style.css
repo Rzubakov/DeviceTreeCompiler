@@ -1,0 +1,18 @@
+body,html{
+    padding: 0px;
+    margin: 0px;
+}
+.inv{
+    background-color: #fca752 !important;
+}
+.full{
+    background-color: red !important;
+    color: #ffffff;
+}
+.table{
+    background-color: #e6e6e6;
+}
+.padd{
+    margin: 0px;
+    padding: 0px;
+}

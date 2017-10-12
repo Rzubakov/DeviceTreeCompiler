@@ -53,5 +53,8 @@ public interface Module {
 
     public Boolean isFull();
 
+    public Boolean isSingleFull();
+    
+    public Boolean isDoubleFull();
 
 }

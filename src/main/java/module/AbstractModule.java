@@ -143,6 +143,16 @@ public abstract class AbstractModule implements Module {
     }
 
     @Override
+    public Boolean isSingleFull() {
+        return currentSize + 1 > size;
+    }
+
+    @Override
+    public Boolean isDoubleFull() {
+        return currentSize + 2 > size;
+    }
+
+    @Override
     public List<String> getConfig() {
         List<String> config = new ArrayList<>();
         config.add("DI32@" + id * 0.01 + "{");

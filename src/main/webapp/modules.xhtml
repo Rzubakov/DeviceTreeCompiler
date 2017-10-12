@@ -23,9 +23,6 @@
                         scrollHeight="520">
                         <f:facet name="header">Контроллеры проекта</f:facet>
                         <p:ajax event="rowSelect"  update="@form" />
-                        <p:column headerText="id" footerText="id">
-                            <h:outputText value="#{controller.id}" />
-                        </p:column>
                         <p:column headerText="Наименование" footerText="Наименование">
                             <h:outputText value="#{controller.name}" />
                         </p:column>
@@ -35,7 +32,7 @@
                     </p:dataTable>      
                 </div>
                 <div class="ui-g-12 ui-md-8 ui-lg-8">
-                    <p:panel id="buttons" header="Добавить модуль" style="margin-bottom:20px" >
+                    <p:panel id="buttons" header="Добавить модуль" style="margin-bottom:10px" >
                         <h:panelGrid columns="3" cellpadding="5" >
                             <p:commandButton  update="@form" value="DI32" actionListener="#{modulesBean.addModule('DI32')}"   disabled="#{modulesBean.selectedController == null or modulesBean.selectedController.isFull()}" />
                             <p:commandButton  update="@form" value="DO32" actionListener="#{modulesBean.addModule('DO32')}"   disabled="#{modulesBean.selectedController == null or modulesBean.selectedController.isFull()}" />

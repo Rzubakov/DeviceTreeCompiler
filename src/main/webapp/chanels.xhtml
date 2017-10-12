@@ -8,28 +8,66 @@
         <ui:define name="title">Каналы</ui:define> 
         <ui:define name="content">
             <h:form id="form">
+                <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
                 <div class="ui-g-12 ui-md-3 ui-lg-3">
-                    <p:dataTable var="controller" value="#{chanelsBean.controllers}"  selectionMode="single" selection="#{chanelsBean.selectedController}" rowKey="#{controller.id}">
+                    <p:dataTable 
+                        var="controller" 
+                        value="#{chanelsBean.controllers}"  
+                        selectionMode="single" 
+                        selection="#{chanelsBean.selectedController}" 
+                        rowKey="#{controller.id}"
+                        styleClass="table" 
+                        rowStyleClass="#{controller.isFull() ? 'full' : null}"                       
+                        scrollable="true" 
+                        scrollHeight="200">
                         <p:ajax event="rowSelect"  update="form:modules form:chanels" listener="#{chanelsBean.resetModule()}"/>
-                        <f:facet name="header">Контроллеры</f:facet>
-                        <p:column headerText="Наименование">
-                            <h:outputText value="#{controller.id}:#{controller.name}" />
+                        <f:facet name="header">Контроллеры проекта</f:facet>
+                        <p:column headerText="Наименование" footerText="Наименование">
+                            <h:outputText value="#{controller.name}" />
                         </p:column>
+                        <p:column headerText="Шасси" footerText="Шасси">
+                            <h:outputText value="#{controller.size}/#{controller.currentSize}" />
+                        </p:column>   
                     </p:dataTable> 
                     <p:separator />
-                    <p:dataTable id="modules" var="module" value="#{chanelsBean.selectedController.modules}"  selectionMode="single" selection="#{chanelsBean.selectedModule}" rowKey="#{module.id}">
-                        <p:ajax event="rowSelect" update="form:chanels"/>
-                        <f:facet name="header">Модули</f:facet>
-                        <p:column headerText="id">
+                    <p:dataTable 
+                        id="modules" 
+                        var="module" 
+                        value="#{chanelsBean.selectedController.modules}"  
+                        selectionMode="single" 
+                        selection="#{chanelsBean.selectedModule}" 
+                        rowKey="#{module.id}"
+                        scrollable="true" 
+                        styleClass="table" 
+                        scrollHeight="300">
+                        <p:ajax event="rowSelect" update="form:chanels form:buttons"/>
+                        <f:facet name="header">Модули контроллера</f:facet>
+                        <p:column headerText="id" footerText="id">
                             <h:outputText value="#{module.id}" />
                         </p:column> 
-                        <p:column headerText="Наименование">
+                        <p:column headerText="Наименование" footerText="Наименование">
                             <h:outputText value="#{module.name}" />
                         </p:column>
                     </p:dataTable>                   
                 </div>
                 <div class="ui-g-12 ui-md-9 ui-lg-9">
-                    <p:dataTable id="chanels" var="chanel" value="#{chanelsBean.selectedModule.chanels}"   rowKey="#{chanel.id}" editable="true">
+                    <p:panel id="buttons" header="Добавить канал" style="margin-bottom:10px" >
+                        <h:panelGrid columns="5" cellpadding="5" >
+                            <p:commandButton  update="chanels @parent" value="AI"   disabled="#{chanelsBean.selectedModule.type != 'AI' or chanelsBean.selectedModule.isSingleFull()}"  actionListener="#{chanelsBean.addChanel('AI')}" />
+                            <p:commandButton  update="chanels @parent" value="SDI"  disabled="#{chanelsBean.selectedModule.type != 'DI' or chanelsBean.selectedModule.isSingleFull()}"  actionListener="#{chanelsBean.addChanel('SDI')}" />
+                            <p:commandButton  update="chanels @parent" value="DDI"  disabled="#{chanelsBean.selectedModule.type != 'DI' or chanelsBean.selectedModule.isDoubleFull()}"  actionListener="#{chanelsBean.addChanel('DDI')}" />
+                            <p:commandButton  update="chanels @parent" value="SDO"  disabled="#{chanelsBean.selectedModule.type != 'DO' or chanelsBean.selectedModule.isSingleFull()}"  actionListener="#{chanelsBean.addChanel('SDO')}" />
+                            <p:commandButton  update="chanels @parent" value="DDO"  disabled="#{chanelsBean.selectedModule.type != 'DO' or chanelsBean.selectedModule.isDoubleFull()}"  actionListener="#{chanelsBean.addChanel('DDO')}" />
+                        </h:panelGrid>
+                    </p:panel>  
+                    <p:dataTable
+                        id="chanels" 
+                        var="chanel" 
+                        value="#{chanelsBean.selectedModule.chanels}"
+                        rowKey="#{chanel.id}"
+                        editable="true"
+                        styleClass="table" 
+                        >
                         <p:ajax event="rowSelect" />
                         <f:facet name="header">Каналы модуля</f:facet>
 
@@ -202,16 +240,7 @@
                                     </p:inputText>
                                 </f:facet>
                             </p:cellEditor>
-                        </p:column>                       
-
-
-                        <f:facet name="footer">
-                            <p:commandButton  update="chanels" value="AI"   rendered="#{chanelsBean.selectedModule.type == 'AI'}" disabled="#{chanelsBean.selectedModule.currentSize+1>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('AI')}" />
-                            <p:commandButton  update="chanels" value="SDI"  rendered="#{chanelsBean.selectedModule.type == 'DI'}" disabled="#{chanelsBean.selectedModule.currentSize+1>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('SDI')}" />
-                            <p:commandButton  update="chanels" value="DDI"  rendered="#{chanelsBean.selectedModule.type == 'DI'}" disabled="#{chanelsBean.selectedModule.currentSize+2>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('DDI')}" />
-                            <p:commandButton  update="chanels" value="SDO"  rendered="#{chanelsBean.selectedModule.type == 'DO'}" disabled="#{chanelsBean.selectedModule.currentSize+1>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('SDO')}" />
-                            <p:commandButton  update="chanels" value="DDO"  rendered="#{chanelsBean.selectedModule.type == 'DO'}" disabled="#{chanelsBean.selectedModule.currentSize+2>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('DDO')}" />
-                        </f:facet>                   
+                        </p:column>                                 
                     </p:dataTable>   
                 </div> 
             </h:form> 

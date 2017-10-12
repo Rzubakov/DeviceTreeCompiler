@@ -206,11 +206,11 @@
 
 
                         <f:facet name="footer">
-                            <p:commandButton  update="chanels" value="AI"   rendered="#{chanelsBean.selectedModule.type == 'AI'}" disabled="#{chanelsBean.selectedModule.currentSize+1>=chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('AI')}" />
-                            <p:commandButton  update="chanels" value="SDI"  rendered="#{chanelsBean.selectedModule.type == 'DI'}" disabled="#{chanelsBean.selectedModule.currentSize+1>=chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('SDI')}" />
-                            <p:commandButton  update="chanels" value="DDI"  rendered="#{chanelsBean.selectedModule.type == 'DI'}" disabled="#{chanelsBean.selectedModule.currentSize+2>=chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('DDI')}" />
-                            <p:commandButton  update="chanels" value="SDO"  rendered="#{chanelsBean.selectedModule.type == 'DO'}" disabled="#{chanelsBean.selectedModule.currentSize+1>=chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('SDO')}" />
-                            <p:commandButton  update="chanels" value="DDO"  rendered="#{chanelsBean.selectedModule.type == 'DO'}" disabled="#{chanelsBean.selectedModule.currentSize+2>=chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('DDO')}" />
+                            <p:commandButton  update="chanels" value="AI"   rendered="#{chanelsBean.selectedModule.type == 'AI'}" disabled="#{chanelsBean.selectedModule.currentSize+1>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('AI')}" />
+                            <p:commandButton  update="chanels" value="SDI"  rendered="#{chanelsBean.selectedModule.type == 'DI'}" disabled="#{chanelsBean.selectedModule.currentSize+1>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('SDI')}" />
+                            <p:commandButton  update="chanels" value="DDI"  rendered="#{chanelsBean.selectedModule.type == 'DI'}" disabled="#{chanelsBean.selectedModule.currentSize+2>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('DDI')}" />
+                            <p:commandButton  update="chanels" value="SDO"  rendered="#{chanelsBean.selectedModule.type == 'DO'}" disabled="#{chanelsBean.selectedModule.currentSize+1>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('SDO')}" />
+                            <p:commandButton  update="chanels" value="DDO"  rendered="#{chanelsBean.selectedModule.type == 'DO'}" disabled="#{chanelsBean.selectedModule.currentSize+2>chanelsBean.selectedModule.size}" actionListener="#{chanelsBean.addChanel('DDO')}" />
                         </f:facet>                   
                     </p:dataTable>   
                 </div> 

@@ -11,7 +11,9 @@ public abstract class AbstractController implements Controller {
     protected List<Module> modules = new ArrayList<>();
     protected String type;
     protected String name;
-
+    protected Integer size;
+    protected Integer currentSize;
+    
     public AbstractController() {
     }
 
@@ -27,6 +29,7 @@ public abstract class AbstractController implements Controller {
 
     @Override
     public void addModule(Module module) {
+        currentSize+=1;
         modules.add(module);
     }
 
@@ -72,12 +75,33 @@ public abstract class AbstractController implements Controller {
 
     @Override
     public void deleteModule(Module module) {
+        currentSize-=1;
         modules.remove(modules.indexOf(module));
     }
 
     @Override
     public String toString() {
         return name + ":" + type;
+    }
+
+    @Override
+    public Integer getSize() {
+        return size;
+    }
+
+    @Override
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    @Override
+    public Integer getCurrentSize() {
+        return currentSize;
+    }
+
+    @Override
+    public void setCurrentSize(Integer currentSize) {
+        this.currentSize = currentSize;
     }
 
     @Override
@@ -100,5 +124,10 @@ public abstract class AbstractController implements Controller {
         config.add("};");
         config.add("};");
         return config;
+    }
+
+    @Override
+    public Boolean isFull() {
+        return this.currentSize>this.size;
     }
 }

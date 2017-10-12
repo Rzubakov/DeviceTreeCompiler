@@ -8,48 +8,59 @@
         <ui:define name="title">Модули</ui:define> 
         <ui:define name="content">
             <h:form id="form">
+                <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
                 <div class="ui-g-12 ui-md-4 ui-lg-4">
-                    <p:dataTable var="controller" value="#{modulesBean.controllers}"  selectionMode="single" selection="#{modulesBean.selectedController}" rowKey="#{controller.id}">
-                        <p:ajax event="rowSelect"  update="form:modules" />
-                        <p:column headerText="Наименование">
-                            <h:outputText value="#{controller.id}:#{controller.name}" />
+                    <p:dataTable var="controller" value="#{modulesBean.controllers}" styleClass="table" selectionMode="single" emptyMessage="Необходимо добавить контроллер." selection="#{modulesBean.selectedController}" rowKey="#{controller.id}" scrollable="true" scrollHeight="520">
+                        <f:facet name="header">Контроллеры проекта</f:facet>
+                        <p:ajax event="rowSelect"  update="@form" />
+                        <p:column headerText="id" footerText="id">
+                            <h:outputText value="#{controller.id}" />
                         </p:column>
+                        <p:column headerText="Наименование" footerText="Наименование">
+                            <h:outputText value="#{controller.name}" />
+                        </p:column>
+                        <p:column headerText="Шасси" footerText="Шасси">
+                            <h:outputText value="#{controller.size}" />
+                        </p:column>   
                     </p:dataTable>      
                 </div>
                 <div class="ui-g-12 ui-md-8 ui-lg-8">
-                    <p:dataTable id="modules" var="module" value="#{modulesBean.selectedController.modules}"  >
+                    <p:panel id="buttons" header="Добавить модуль" style="margin-bottom:20px" >
+                        <h:panelGrid columns="3" cellpadding="5" >
+                            <p:commandButton  update="@form" value="DI32" actionListener="#{modulesBean.addModule('DI32')}"   disabled="#{modulesBean.selectedController == null or modulesBean.selectedController.isFull()}" />
+                            <p:commandButton  update="@form" value="DO32" actionListener="#{modulesBean.addModule('DO32')}"   disabled="#{modulesBean.selectedController == null or modulesBean.selectedController.isFull()}" />
+                            <p:commandButton  update="@form" value="AIG16" actionListener="#{modulesBean.addModule('AIG16')}" disabled="#{modulesBean.selectedController == null or modulesBean.selectedController.isFull()}" />
+                        </h:panelGrid>
+                    </p:panel>          
+                    <p:dataTable id="modules" var="module" value="#{modulesBean.selectedController.modules}" styleClass="table" emptyMessage="Необходимо выбрать контроллер." scrollable="true" scrollHeight="400">
+                        <f:facet name="header">Модули контроллера</f:facet>
                         <p:column width="30">
                             <p:graphicImage library="images" name="#{module.name}.png" width="30"/>
                         </p:column> 
-                        <p:column headerText="id">
+                        <p:column headerText="id" footerText="id">
                             <h:outputText value="#{module.id}" />
                         </p:column> 
-                        <p:column headerText="size">
+                        <p:column headerText="size" footerText="size">
                             <h:outputText value="#{module.currentSize}/#{module.size}" />
                         </p:column>     
-                        <p:column headerText="index">
+                        <p:column headerText="index" footerText="index">
                             <h:outputText value="#{module.index}" />
                         </p:column>
-                        <p:column headerText="Имя">
+                        <p:column headerText="Имя" footerText="Имя">
                             <h:outputText value="#{module.name}" />
                         </p:column> 
-                        <p:column headerText="ts_vname">
+                        <p:column headerText="ts_vname" footerText="ts_vname">
                             <h:outputText value="#{module.ts_vname}" />
                         </p:column>  
-                        <p:column headerText="vname">
+                        <p:column headerText="vname" footerText="vname">
                             <h:outputText value="#{module.vname}" />
                         </p:column>   
-                        <p:column headerText="kind">
+                        <p:column headerText="kind" footerText="kind">
                             <h:outputText value="#{module.kind}" />
                         </p:column>  
                         <p:column style="width:50px;text-align: center">
                             <p:commandButton update="@form"  icon="ui-icon-trash" title="Удалить" actionListener="#{modulesBean.deleteModule(module)}" />            
                         </p:column>                      
-                        <f:facet name="footer">
-                            <p:commandButton  update="modules" value="DI32" actionListener="#{modulesBean.addModule('DI32')}"   disabled="#{modulesBean.selectedController == null}" />
-                            <p:commandButton  update="modules" value="DO32" actionListener="#{modulesBean.addModule('DO32')}"   disabled="#{modulesBean.selectedController == null}" />
-                            <p:commandButton  update="modules" value="AIG16" actionListener="#{modulesBean.addModule('AIG16')}" disabled="#{modulesBean.selectedController == null}" />
-                        </f:facet>
                     </p:dataTable>      
                 </div>
             </h:form> 

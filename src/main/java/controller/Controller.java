@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import module.Module;
 
@@ -30,5 +29,15 @@ public interface Controller {
 
     public void deleteModule(Module module);
 
+    public Integer getSize();
+
+    public void setSize(Integer size);
+
+    public Integer getCurrentSize();
+
+    public void setCurrentSize(Integer currentSize);
+
     public List<String> getConfig();
+    
+    public Boolean isFull();
 }

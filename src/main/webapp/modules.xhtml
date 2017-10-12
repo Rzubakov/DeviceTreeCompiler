@@ -10,7 +10,17 @@
             <h:form id="form">
                 <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
                 <div class="ui-g-12 ui-md-4 ui-lg-4">
-                    <p:dataTable var="controller" value="#{modulesBean.controllers}" styleClass="table" selectionMode="single" emptyMessage="Необходимо добавить контроллер." selection="#{modulesBean.selectedController}" rowKey="#{controller.id}" scrollable="true" scrollHeight="520">
+                    <p:dataTable 
+                        var="controller" 
+                        value="#{modulesBean.controllers}" 
+                        styleClass="table" 
+                        rowStyleClass="#{controller.isFull() ? 'full' : null}"
+                        selectionMode="single" 
+                        emptyMessage="Необходимо добавить контроллер." 
+                        selection="#{modulesBean.selectedController}" 
+                        rowKey="#{controller.id}" 
+                        scrollable="true" 
+                        scrollHeight="520">
                         <f:facet name="header">Контроллеры проекта</f:facet>
                         <p:ajax event="rowSelect"  update="@form" />
                         <p:column headerText="id" footerText="id">
@@ -20,7 +30,7 @@
                             <h:outputText value="#{controller.name}" />
                         </p:column>
                         <p:column headerText="Шасси" footerText="Шасси">
-                            <h:outputText value="#{controller.size}" />
+                            <h:outputText value="#{controller.size}/#{controller.currentSize}" />
                         </p:column>   
                     </p:dataTable>      
                 </div>
@@ -33,7 +43,7 @@
                         </h:panelGrid>
                     </p:panel>          
                     <p:dataTable id="modules" var="module" value="#{modulesBean.selectedController.modules}" styleClass="table" emptyMessage="Необходимо выбрать контроллер." scrollable="true" scrollHeight="400">
-                        <f:facet name="header">Модули контроллера</f:facet>
+                        <f:facet name="header">Модули контроллера #{modulesBean.selectedController.name}</f:facet>
                         <p:column width="30">
                             <p:graphicImage library="images" name="#{module.name}.png" width="30"/>
                         </p:column> 

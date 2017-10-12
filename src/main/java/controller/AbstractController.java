@@ -128,6 +128,6 @@ public abstract class AbstractController implements Controller {
 
     @Override
     public Boolean isFull() {
-        return this.currentSize>this.size;
+        return this.currentSize>=this.size;
     }
 }

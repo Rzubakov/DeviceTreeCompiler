@@ -8,6 +8,10 @@
         <title><ui:insert name="title">Название по умолчанию</ui:insert></title>
         <link rel="shortcut icon" href="#{resource['images/favicon.ico']}" />
         <style>
+            body,html{
+                padding: 0px;
+                margin: 0px;
+            }
             .inv{
                 background-color: #fca752 !important;
             }
@@ -18,12 +22,16 @@
             .table{
                 background-color: #e6e6e6;
             }
+            .padd{
+                margin: 0px;
+                padding: 0px;
+            }
         </style>
     </h:head>
     <h:body>
 
         <div class="ui-g">
-            <div class="ui-g-12 ui-md-12 ui-lg-12">
+            <div class="ui-g-12 ui-md-12 ui-lg-12 padd" >
                 <h:form>  
                     <p:tabMenu activeIndex="#{param.i}">
                         <p:menuitem value="Контроллеры" outcome="controllers"> 

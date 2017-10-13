@@ -52,4 +52,5 @@ public class ModulesBean implements Serializable {
         this.model = model;
     }
 
+
 }

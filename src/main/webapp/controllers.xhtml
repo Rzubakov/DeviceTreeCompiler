@@ -22,7 +22,7 @@
                         value="#{controllersBean.controllers}" 
                         editable="true" 
                         scrollable="true"  
-                        scrollHeight="450" 
+                        scrollHeight="400" 
                         styleClass="table" 
                         rowStyleClass="#{controller.isFull() ? 'full' : null}"
                         editMode="cell" 
@@ -60,7 +60,7 @@
                             </p:cellEditor>
                         </p:column>   
                         <p:column style="width:50px;text-align: center">
-                            <p:commandButton update="@form"  icon="ui-icon-trash" title="Удалить" actionListener="#{controllersBean.deleteController(controller)}" />            
+                            <p:commandButton update="@form "  icon="ui-icon-trash" title="Удалить" actionListener="#{controllersBean.deleteController(controller)}" />            
                         </p:column>
                     </p:dataTable> 
                 </div>             

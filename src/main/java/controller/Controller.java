@@ -40,4 +40,6 @@ public interface Controller {
     public List<String> getConfig();
     
     public Boolean isFull();
+    
+    
 }

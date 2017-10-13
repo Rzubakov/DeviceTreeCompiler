@@ -32,4 +32,15 @@ public class ModelBean implements Serializable {
         controllers.remove(controller);
     }
 
+    public Boolean isEmptyControllers() {
+        return controllers.isEmpty();
+    }
+
+    public Boolean isEmptyModules() {
+        int count = 0;
+        for (Controller c : controllers) {
+            count = +c.getModules().size();
+        }
+        return count == 0;
+    }
 }

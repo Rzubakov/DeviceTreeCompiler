@@ -39,7 +39,15 @@
                             <p:commandButton  update="@form" value="AIG16" actionListener="#{modulesBean.addModule('AIG16')}" disabled="#{modulesBean.selectedController == null or modulesBean.selectedController.isFull()}" />
                         </h:panelGrid>
                     </p:panel>          
-                    <p:dataTable id="modules" var="module" value="#{modulesBean.selectedController.modules}" styleClass="table" emptyMessage="Необходимо выбрать контроллер." scrollable="true" scrollHeight="400">
+                    <p:dataTable 
+                        id="modules" 
+                        var="module" 
+                        value="#{modulesBean.selectedController.modules}" 
+                        styleClass="table" 
+                        rowStyleClass="#{module.isFull() ? 'full' : null}"
+                        emptyMessage="Необходимо выбрать контроллер." 
+                        scrollable="true" 
+                        scrollHeight="400">
                         <f:facet name="header">Модули контроллера #{modulesBean.selectedController.name}</f:facet>
                         <p:column width="30">
                             <p:graphicImage library="images" name="#{module.name}.png" width="30"/>

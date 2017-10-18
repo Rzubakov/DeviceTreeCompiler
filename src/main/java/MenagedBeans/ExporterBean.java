@@ -12,6 +12,8 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ExporterBean implements Serializable {
 
+    private static final long serialVersionUID = -4973184799119605654L;
+
     @ManagedProperty("#{model}")
     private ModelBean model;
     @EJB
@@ -20,11 +22,10 @@ public class ExporterBean implements Serializable {
     public ExporterBean() {
     }
 
-    public File exportDtcFile(){
+    public File exportDtcFile() {
         return utils.getDtsFile(model.getControllers());
     }
-    
-    
+
     public ModelBean getModel() {
         return model;
     }

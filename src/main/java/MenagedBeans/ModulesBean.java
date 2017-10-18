@@ -13,6 +13,8 @@ import module.ModuleFactory;
 @ViewScoped
 public class ModulesBean implements Serializable {
 
+    private static final long serialVersionUID = -7924916689541286483L;
+
     @ManagedProperty("#{model}")
     private ModelBean model;
 
@@ -51,6 +53,5 @@ public class ModulesBean implements Serializable {
     public void setModel(ModelBean model) {
         this.model = model;
     }
-
 
 }

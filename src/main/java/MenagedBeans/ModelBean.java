@@ -11,6 +11,8 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ModelBean implements Serializable {
 
+    private static final long serialVersionUID = -2762117385230274461L;
+
     private List<Controller> controllers = new ArrayList<>();
 
     public ModelBean() {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MenagedBeans;
 
 import EJB.UtilsInt;
@@ -23,7 +18,7 @@ import org.primefaces.model.StreamedContent;
 @ViewScoped
 public class ConverterBean implements Serializable {
 
-    private static final long serialVersionUID = -2763414850414417113L;
+    private static final long serialVersionUID = -8655870336838680378L;
 
     public ConverterBean() {
 
@@ -31,7 +26,7 @@ public class ConverterBean implements Serializable {
 
     @EJB
     private UtilsInt utils;
-    
+
     private File tfile;
     private StreamedContent dfile;
 

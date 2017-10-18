@@ -14,6 +14,8 @@ import module.Module;
 @ViewScoped
 public class ChanelsBean implements Serializable {
 
+    private static final long serialVersionUID = -9210668492369492186L;
+
     @ManagedProperty("#{model}")
 
     private ModelBean model;

@@ -7,12 +7,13 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.event.CellEditEvent;
 
 @ManagedBean(name = "controllersBean")
 @ViewScoped
 public class СontrollersBean implements Serializable {
 
-    private static final long serialVersionUID = 4325384860998301404L;
+    private static final long serialVersionUID = 8181446570245892422L;
 
     @ManagedProperty("#{model}")
     private ModelBean model;
@@ -44,4 +45,7 @@ public class СontrollersBean implements Serializable {
         this.model = model;
     }
 
+    public void onCellEdit(CellEditEvent event) {
+        System.out.println(event.getNewValue());
+    }
 }

@@ -31,6 +31,7 @@
 
                         <f:facet name="header">Контроллеры</f:facet> 
                         <p:ajax event="rowSelect"  update="@form" />
+                        <p:ajax event="cellEdit" listener="#{controllersBean.onCellEdit}" />
                         <p:column headerText="id" footerText="id" >
                             <h:outputText value="#{controller.id}" title="id"/>
                         </p:column>                       

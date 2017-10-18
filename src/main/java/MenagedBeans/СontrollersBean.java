@@ -7,7 +7,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import org.primefaces.event.CellEditEvent;
 
 @ManagedBean(name = "controllersBean")
 @ViewScoped
@@ -15,37 +14,34 @@ public class СontrollersBean implements Serializable {
 
     private static final long serialVersionUID = 8181446570245892422L;
 
-    @ManagedProperty("#{model}")
-    private ModelBean model;
+    @ManagedProperty("#{session}")
+    private SessionBean session;
 
     public СontrollersBean() {
 
     }
 
     public List<Controller> getControllers() {
-        return model.getControllers();
+        return session.getControllers();
     }
 
     public void addController(String type) {
-        model.addController(ControllerFactory.getControllerByType(type));
-        for (int i = 0; i < model.getControllers().size(); i++) {
-            model.getControllers().get(i).setId(i);
+        session.addController(ControllerFactory.getControllerByType(type));
+        for (int i = 0; i < session.getControllers().size(); i++) {
+            session.getControllers().get(i).setId(i);
         }
     }
 
     public void deleteController(Controller controller) {
-        model.deleteController(controller);
+        session.deleteController(controller);
     }
 
-    public ModelBean getModel() {
-        return model;
+    public SessionBean getModel() {
+        return session;
     }
 
-    public void setModel(ModelBean model) {
-        this.model = model;
+    public void setModel(SessionBean session) {
+        this.session = session;
     }
 
-    public void onCellEdit(CellEditEvent event) {
-        System.out.println(event.getNewValue());
-    }
 }

@@ -16,9 +16,8 @@ public class ChanelsBean implements Serializable {
 
     private static final long serialVersionUID = -9210668492369492186L;
 
-    @ManagedProperty("#{model}")
-
-    private ModelBean model;
+    @ManagedProperty("#{session}")
+    private SessionBean session;
     private Controller selectedController;
     private Module selectedModule;
 
@@ -26,7 +25,7 @@ public class ChanelsBean implements Serializable {
     }
 
     public List<Controller> getControllers() {
-        return model.getControllers();
+        return session.getControllers();
     }
 
     public void addChanel(String type) {
@@ -57,12 +56,12 @@ public class ChanelsBean implements Serializable {
         this.selectedModule = selectedModule;
     }
 
-    public ModelBean getModel() {
-        return model;
+    public SessionBean getModel() {
+        return session;
     }
 
-    public void setModel(ModelBean model) {
-        this.model = model;
+    public void setModel(SessionBean session) {
+        this.session = session;
     }
 
     public void resetModule() {

@@ -15,8 +15,8 @@ public class ModulesBean implements Serializable {
 
     private static final long serialVersionUID = -7924916689541286483L;
 
-    @ManagedProperty("#{model}")
-    private ModelBean model;
+    @ManagedProperty("#{session}")
+    private SessionBean session;
 
     private Controller selectedController;
 
@@ -24,7 +24,7 @@ public class ModulesBean implements Serializable {
     }
 
     public List<Controller> getControllers() {
-        return model.getControllers();
+        return session.getControllers();
     }
 
     public void addModule(String type) {
@@ -46,12 +46,12 @@ public class ModulesBean implements Serializable {
         this.selectedController = selectedController;
     }
 
-    public ModelBean getModel() {
-        return model;
+    public SessionBean getModel() {
+        return session;
     }
 
-    public void setModel(ModelBean model) {
-        this.model = model;
+    public void setModel(SessionBean session) {
+        this.session = session;
     }
 
 }

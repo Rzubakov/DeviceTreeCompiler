@@ -14,8 +14,8 @@ public class ExporterBean implements Serializable {
 
     private static final long serialVersionUID = -4973184799119605654L;
 
-    @ManagedProperty("#{model}")
-    private ModelBean model;
+    @ManagedProperty("#{session}")
+    private SessionBean session;
     @EJB
     UtilsInt utils;
 
@@ -23,15 +23,15 @@ public class ExporterBean implements Serializable {
     }
 
     public File exportDtcFile() {
-        return utils.getDtsFile(model.getControllers());
+        return utils.getDtsFile(session.getControllers());
     }
 
-    public ModelBean getModel() {
-        return model;
+    public SessionBean getModel() {
+        return session;
     }
 
-    public void setModel(ModelBean model) {
-        this.model = model;
+    public void setModel(SessionBean session) {
+        this.session = session;
     }
 
 }

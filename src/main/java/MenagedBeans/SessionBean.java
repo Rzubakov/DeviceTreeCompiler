@@ -7,15 +7,15 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name = "model")
+@ManagedBean(name = "session")
 @SessionScoped
-public class ModelBean implements Serializable {
+public class SessionBean implements Serializable {
 
     private static final long serialVersionUID = -2762117385230274461L;
 
     private List<Controller> controllers = new ArrayList<>();
 
-    public ModelBean() {
+    public SessionBean() {
     }
 
     public List<Controller> getControllers() {

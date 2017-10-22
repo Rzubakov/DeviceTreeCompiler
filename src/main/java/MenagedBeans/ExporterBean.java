@@ -1,7 +1,6 @@
 package MenagedBeans;
 
 import EJB.UtilsInt;
-import java.io.File;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -14,23 +13,23 @@ public class ExporterBean implements Serializable {
 
     private static final long serialVersionUID = -4973184799119605654L;
 
-    @ManagedProperty("#{session}")
+    @ManagedProperty("#{sessionBean}")
     private SessionBean session;
     @EJB
     UtilsInt utils;
 
     public ExporterBean() {
     }
-
+/*
     public File exportDtcFile() {
         return utils.getDtsFile(session.getControllers());
     }
-
-    public SessionBean getModel() {
+*/
+    public SessionBean getSession() {
         return session;
     }
 
-    public void setModel(SessionBean session) {
+    public void setSession(SessionBean session) {
         this.session = session;
     }
 

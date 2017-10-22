@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/layouts/home.xhtml">
+        <ui:define name="title">Проекты</ui:define> 
+        <ui:define name="content">
+            <h:form id="form">
+                <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
+                <div class="ui-g-12 ui-md-12 ui-lg-12">
+                    <p:panel id="project" header="Проекты" style="margin-bottom:20px">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:commandButton  update="@form" value="+ Проект" actionListener="#{projectBean.addProject()}" />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:dataTable
+                        id="projects" 
+                        var="project" 
+                        value="#{projectBean.projects}" 
+                        editable="true" 
+                        scrollable="true"  
+                        scrollHeight="350" 
+                        styleClass="table" 
+                        editMode="cell" 
+                        rowKey="#{project.id}" 
+                        emptyMessage="Добавьте проект."  >
+                        <f:facet name="header">Проекты</f:facet> 
+                        <p:ajax event="rowSelect"  update="@form" />
+                        <p:column headerText="id" footerText="id" >
+                            <h:outputText value="#{project.id}" title="id"/>
+                        </p:column>                       
+                        <p:column headerText="Имя проекта" footerText="Имя проекта" >
+                            <h:outputText value="#{project.name}" title="Имя проекта"/>
+                        </p:column>
+                        <p:column style="width:50px;text-align: center">
+                            <p:commandButton update="@form "  icon="ui-icon-trash" title="Удалить" actionListener="#{projectBean.deleteProject(project)}" />            
+                        </p:column>
+                    </p:dataTable> 
+                </div>             
+            </h:form> 
+        </ui:define> 
+    </ui:composition>    
+</html>    

@@ -38,6 +38,11 @@
             <from-outcome>export</from-outcome>
             <to-view-id>/export.xhtml</to-view-id>
             <redirect/>
+        </navigation-case>    
+        <navigation-case>
+            <from-outcome>projects</from-outcome>
+            <to-view-id>/projects.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>   
     </navigation-rule>
 

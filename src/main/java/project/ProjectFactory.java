@@ -2,7 +2,7 @@ package project;
 
 public class ProjectFactory {
 
-    public static ProjectInt getProject(String type) {
+    public static ProjectInt getProject() {
         return new Project();
     }
 }

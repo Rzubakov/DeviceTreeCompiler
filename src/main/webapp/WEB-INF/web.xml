@@ -49,7 +49,7 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>/controllers.xhtml</welcome-file>
+        <welcome-file>/projects.xhtml</welcome-file>
     </welcome-file-list>
     
 

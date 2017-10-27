@@ -31,8 +31,8 @@ public class SessionBean implements Serializable {
         projects.remove(project);
     }
 
-    public void addProject() {
-        projects.add(ProjectFactory.getProject());
+    public void addProject(ProjectInt project) {
+        projects.add(project);
     }
 
 }

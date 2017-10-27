@@ -3,12 +3,12 @@ package controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import module.Module;
+import module.ModuleInt;
 
-public abstract class AbstractController implements Controller {
+public abstract class AbstractController implements ControllerInt {
 
     protected Integer id;
-    protected List<Module> modules = new ArrayList<>();
+    protected List<ModuleInt> modules = new ArrayList<>();
     protected String type;
     protected String name;
     protected Integer size;
@@ -28,23 +28,23 @@ public abstract class AbstractController implements Controller {
     }
 
     @Override
-    public void addModule(Module module) {
+    public void addModule(ModuleInt module) {
         currentSize+=1;
         modules.add(module);
     }
 
     @Override
-    public Module getModule(int index) {
+    public ModuleInt getModule(int index) {
         return modules.get(index);
     }
 
     @Override
-    public List<Module> getModules() {
+    public List<ModuleInt> getModules() {
         return modules;
     }
 
     @Override
-    public void setModules(List<Module> modules) {
+    public void setModules(List<ModuleInt> modules) {
         this.modules = modules;
     }
 
@@ -69,12 +69,12 @@ public abstract class AbstractController implements Controller {
     }
 
     @Override
-    public Module find(Module module) {
+    public ModuleInt find(ModuleInt module) {
         return modules.get(modules.indexOf(module));
     }
 
     @Override
-    public void deleteModule(Module module) {
+    public void deleteModule(ModuleInt module) {
         currentSize-=1;
         modules.remove(modules.indexOf(module));
     }

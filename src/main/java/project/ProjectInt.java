@@ -1,19 +1,24 @@
 package project;
 
-import controller.Controller;
 import java.util.List;
+import controller.ControllerInt;
+import java.util.UUID;
 
 public interface ProjectInt {
 
-    public Integer getId();
+    public UUID getId();
 
-    public void setId(Integer id);
+    public void setId(UUID id);
 
     public String getName();
 
     public void setName(String name);
 
-    public List<Controller> getControllers();
+    public List<ControllerInt> getControllers();
 
-    public void setControllers(List<Controller> controllers);
+    public void setControllers(List<ControllerInt> controllers);
+
+    public void addController(ControllerInt controller);
+
+    public void deleteController(ControllerInt controller);
 }

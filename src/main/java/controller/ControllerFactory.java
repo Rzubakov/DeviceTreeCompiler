@@ -2,7 +2,7 @@ package controller;
 
 public class ControllerFactory {
 
-    public static Controller getControllerByType(String type) {
+    public static ControllerInt getControllerByType(String type) {
 
         switch (type) {
             case "Mfc1500":

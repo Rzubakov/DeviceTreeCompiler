@@ -2,7 +2,7 @@ package module;
 
 public class ModuleFactory {
 
-    public static Module getModuleByType(String type) {
+    public static ModuleInt getModuleByType(String type) {
         switch (type) {
             case "DI32":
                 return new DI32();

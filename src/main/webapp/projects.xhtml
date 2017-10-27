@@ -10,9 +10,9 @@
             <h:form id="form">
                 <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
                 <div class="ui-g-12 ui-md-12 ui-lg-12">
-                    <p:panel id="project" header="Проекты" style="margin-bottom:20px">
+                    <p:panel id="project" header="Проекты" style="margin-bottom:10px">
                         <h:panelGrid columns="2" cellpadding="5">
-                            <p:commandButton  update="@form" value="+ Проект" actionListener="#{projectBean.addProject()}" />
+                            <p:commandButton  update="@form" value="Добавить проект" actionListener="#{projectBean.addProject()}" />
                         </h:panelGrid>
                     </p:panel>
                     <p:dataTable
@@ -28,12 +28,19 @@
                         emptyMessage="Добавьте проект."  >
                         <f:facet name="header">Проекты</f:facet> 
                         <p:ajax event="rowSelect"  update="@form" />
-                        <p:column headerText="id" footerText="id" >
-                            <h:outputText value="#{project.id}" title="id"/>
-                        </p:column>                       
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="prj.png" width="30"/>
+                        </p:column>                   
                         <p:column headerText="Имя проекта" footerText="Имя проекта" >
-                            <h:outputText value="#{project.name}" title="Имя проекта"/>
-                        </p:column>
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{project.name}" title="Имя проекта" /></f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="name" value="#{project.name}" requiredMessage="Длина от 5 до 255 символов." style="width: 100%;">
+                                        <f:validateLength minimum="5" maximum="255"  />
+                                    </p:inputText>
+                                </f:facet>
+                            </p:cellEditor>                        
+                        </p:column>                      
                         <p:column style="width:50px;text-align: center">
                             <p:commandButton update="@form "  icon="ui-icon-trash" title="Удалить" actionListener="#{projectBean.deleteProject(project)}" />            
                         </p:column>

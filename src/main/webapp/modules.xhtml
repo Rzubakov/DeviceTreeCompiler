@@ -10,6 +10,25 @@
             <h:form id="form">
                 <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
                 <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <div class="ui-g-12 ui-md-4 ui-lg-4">
+                        <p:dataTable
+                            id="projects" 
+                            var="project" 
+                            value="#{projectBean.projects}" 
+                            editable="true" 
+                            scrollable="true"  
+                            scrollHeight="200" 
+                            styleClass="table" 
+                            editMode="cell" 
+                            rowKey="#{project.id}" 
+                            emptyMessage="Добавьте проект."  >
+                            <f:facet name="header">Проекты</f:facet> 
+                            <p:ajax event="rowSelect"  update="@form" />                     
+                            <p:column headerText="Имя проекта" footerText="Имя проекта" >
+                                <h:outputText value="#{project.name}" title="Имя проекта"/>
+                            </p:column>                      
+                        </p:dataTable> 
+                    </div>  
                     <p:dataTable 
                         var="controller" 
                         value="#{modulesBean.controllers}" 
@@ -20,7 +39,7 @@
                         selection="#{modulesBean.selectedController}" 
                         rowKey="#{controller.id}" 
                         scrollable="true" 
-                        scrollHeight="520">
+                        scrollHeight="270">
                         <f:facet name="header">Контроллеры проекта</f:facet>
                         <p:ajax event="rowSelect"  update="@form" />
                         <p:column headerText="Наименование" footerText="Наименование">

@@ -1,21 +1,23 @@
 package controller;
 
 import java.util.List;
-import module.Module;
+import module.ModuleInt;
 
-public interface Controller {
+public interface ControllerInt {
 
     public Integer getId();
 
     public void setId(Integer id);
 
-    public void addModule(Module module);
+    public void addModule(ModuleInt module);
 
-    public Module getModule(int index);
+    public void deleteModule(ModuleInt module);
 
-    public List<Module> getModules();
+    public ModuleInt getModule(int index);
 
-    public void setModules(List<Module> modules);
+    public List<ModuleInt> getModules();
+
+    public void setModules(List<ModuleInt> modules);
 
     public String getType();
 
@@ -25,9 +27,7 @@ public interface Controller {
 
     public void setName(String name);
 
-    public Module find(Module module);
-
-    public void deleteModule(Module module);
+    public ModuleInt find(ModuleInt module);
 
     public Integer getSize();
 
@@ -38,8 +38,7 @@ public interface Controller {
     public void setCurrentSize(Integer currentSize);
 
     public List<String> getConfig();
-    
+
     public Boolean isFull();
-    
-    
+
 }

@@ -1,8 +1,8 @@
 package project;
 
-public class Project extends AbstractProject {
+public class EmptyProject extends AbstractProject {
 
-    public Project() {
+    public EmptyProject() {
         this.name = "Название проекта";
     }
 }

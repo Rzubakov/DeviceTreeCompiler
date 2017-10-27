@@ -3,7 +3,7 @@ package module;
 import chanel.Chanel;
 import java.util.List;
 
-public interface Module {
+public interface ModuleInt {
 
     public String getType();
 

@@ -4,7 +4,7 @@ import chanel.Chanel;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractModule implements Module {
+public abstract class AbstractModule implements ModuleInt {
 
     protected String type;
     protected Integer id;

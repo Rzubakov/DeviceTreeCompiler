@@ -1,21 +1,25 @@
 package project;
 
-import controller.Controller;
 import java.util.List;
+import controller.ControllerInt;
+import java.util.ArrayList;
+import java.util.UUID;
 
 public abstract class AbstractProject implements ProjectInt {
 
-    protected Integer id;
+    protected UUID id;
     protected String name;
-    protected List<Controller> controllers;
+    protected List<ControllerInt> controllers = new ArrayList<>();
+
+    ;
 
     @Override
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -30,13 +34,23 @@ public abstract class AbstractProject implements ProjectInt {
     }
 
     @Override
-    public List<Controller> getControllers() {
+    public List<ControllerInt> getControllers() {
         return controllers;
     }
 
     @Override
-    public void setControllers(List<Controller> controllers) {
+    public void setControllers(List<ControllerInt> controllers) {
         this.controllers = controllers;
+    }
+
+    @Override
+    public void addController(ControllerInt controller) {
+        controllers.add(controller);
+    }
+
+    @Override
+    public void deleteController(ControllerInt controller) {
+        controllers.remove(controller);
     }
 
 }

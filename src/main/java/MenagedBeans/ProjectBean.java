@@ -2,9 +2,11 @@ package MenagedBeans;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import project.ProjectFactory;
 
 import project.ProjectInt;
 
@@ -37,6 +39,8 @@ public class ProjectBean implements Serializable {
     }
 
     public void addProject() {
-        session.addProject();
+        ProjectInt project = ProjectFactory.getProject();
+        project.setId(UUID.randomUUID());
+        session.addProject(project);
     }
 }

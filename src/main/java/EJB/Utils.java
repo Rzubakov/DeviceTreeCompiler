@@ -1,6 +1,5 @@
 package EJB;
 
-import controller.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.primefaces.model.UploadedFile;
+import controller.ControllerInt;
 
 @Stateless
 public class Utils implements UtilsInt {
@@ -71,7 +71,7 @@ public class Utils implements UtilsInt {
     //      return null;
     //  }
     @Override
-    public File getDtsFile(List<Controller> controller) {
+    public File getDtsFile(List<ControllerInt> controller) {
 
         controller.forEach(c -> {
             try (PrintWriter print = new PrintWriter("c://Testing/" + c.getName() + ".dts")) {
@@ -87,7 +87,7 @@ public class Utils implements UtilsInt {
     }
 
     @Override
-    public File getDtbFile(List<Controller> controllers
+    public File getDtbFile(List<ControllerInt> controllers
     ) {
         return null;
     }

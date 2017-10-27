@@ -9,64 +9,27 @@
         <ui:define name="content">
             <h:form id="form">
                 <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
-                <div class="ui-g-12 ui-md-6 ui-lg-6">
-                    <p:panel id="project" header="Проекты" style="margin-bottom:20px">
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <p:commandButton  update="@form" value="МФК-1500" actionListener="#{controllersBean.addController('Mfc1500')}" />
-                            <p:commandButton  update="@form" value="МФК-3000" disabled="true" actionListener="#{controllersBean.addController('Mfc3000')}" />
-                        </h:panelGrid>
-                    </p:panel>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
                     <p:dataTable
                         id="projects" 
-                        var="controller" 
-                        value="#{controllersBean.controllers}" 
-                        editable="true" 
+                        var="project" 
+                        value="#{projectBean.projects}" 
                         scrollable="true"  
-                        scrollHeight="350" 
+                        scrollHeight="470" 
                         styleClass="table" 
-                        rowStyleClass="#{controller.isFull() ? 'full' : null}"
-                        editMode="cell" 
-                        rowKey="#{controller.id}" 
-                        emptyMessage="Добавьте контроллер."  >
-
+                        selectionMode="single" 
+                        rowKey="#{project.id}" 
+                        selection="#{controllersBean.selectedProject}" 
+                        emptyMessage="Добавьте проект."  >
                         <f:facet name="header">Проекты</f:facet> 
-                        <p:ajax event="rowSelect"  update="@form" />
-                        <p:column headerText="id" footerText="id" >
-                            <h:outputText value="#{controller.id}" title="id"/>
-                        </p:column>                       
-                        <p:column headerText="Тип контроллера" footerText="Тип контроллера" >
-                            <h:outputText value="#{controller.type}" title="Тип контроллера"/>
-                        </p:column>
-                        <p:column headerText="Size">
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{controller.size}/#{controller.currentSize}" /></f:facet>
-                                <f:facet name="input">
-                                    <h:selectOneMenu value="#{controller.size}" style="width:100%">
-                                        <f:selectItem itemLabel="Шасси 8 модулей" itemValue="8" />
-                                        <f:selectItem itemLabel="Шасси 16 модулей" itemValue="16" />
-                                        <f:selectItem itemLabel="Шасси 32 модуля" itemValue="32" />
-                                    </h:selectOneMenu>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-                        <p:column headerText="Наименование" footerText="Наименование" >
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{controller.name}"/></f:facet>
-                                <f:facet name="input">
-                                    <p:inputText id="description" value="#{controller.name}" validatorMessage="Наименование обязательно. Длина от 5 до 255 символов.">
-                                        <f:validateLength minimum="5" maximum="255" />
-                                    </p:inputText>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>   
-                        <p:column style="width:50px;text-align: center">
-                            <p:commandButton update="@form "  icon="ui-icon-trash" title="Удалить" actionListener="#{controllersBean.deleteController(controller)}" />            
-                        </p:column>
+                        <p:ajax event="rowSelect"  update="@form" />                     
+                        <p:column headerText="Имя проекта" footerText="Имя проекта" >
+                            <h:outputText value="#{project.name}" title="Имя проекта"/>
+                        </p:column>                      
                     </p:dataTable> 
-                </div>             
-
-                <div class="ui-g-12 ui-md-6 ui-lg-6">
-                    <p:panel id="controller" header="Добавить контроллер" style="margin-bottom:20px">
+                </div>
+                <div class="ui-g-12 ui-md-8 ui-lg-8">
+                    <p:panel id="controller" header="Добавить контроллер" style="margin-bottom: 10px;">
                         <h:panelGrid columns="2" cellpadding="5">
                             <p:commandButton  update="@form" value="МФК-1500" actionListener="#{controllersBean.addController('Mfc1500')}" />
                             <p:commandButton  update="@form" value="МФК-3000" disabled="true" actionListener="#{controllersBean.addController('Mfc3000')}" />
@@ -120,9 +83,7 @@
                         </p:column>
                     </p:dataTable> 
                 </div>             
-
             </h:form> 
-
         </ui:define> 
     </ui:composition>    
 </html>    

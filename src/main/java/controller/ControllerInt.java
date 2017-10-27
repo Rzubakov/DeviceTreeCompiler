@@ -1,13 +1,14 @@
 package controller;
 
 import java.util.List;
+import java.util.UUID;
 import module.ModuleInt;
 
 public interface ControllerInt {
 
-    public Integer getId();
+    public UUID getId();
 
-    public void setId(Integer id);
+    public void setId(UUID id);
 
     public void addModule(ModuleInt module);
 

@@ -1,13 +1,14 @@
 package module;
 
-import chanel.Chanel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import chanel.ChanelInt;
 
 public abstract class AbstractModule implements ModuleInt {
 
     protected String type;
-    protected Integer id;
+    protected UUID id;
     protected Integer index;
     protected String name;
     protected String vname;
@@ -16,7 +17,7 @@ public abstract class AbstractModule implements ModuleInt {
     protected Integer size;
     protected Integer currentSize;
 
-    private List<Chanel> chanels = new ArrayList<>();
+    private List<ChanelInt> chanels = new ArrayList<>();
 
     public AbstractModule() {
     }
@@ -32,23 +33,23 @@ public abstract class AbstractModule implements ModuleInt {
     }
 
     @Override
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
     @Override
-    public void addChanel(Chanel chanel) {
+    public void addChanel(ChanelInt chanel) {
         currentSize += chanel.getSize();
         chanels.add(chanel);
     }
 
     @Override
-    public Chanel getChanel(int index) {
+    public ChanelInt getChanel(int index) {
         return chanels.get(index);
     }
 
@@ -103,12 +104,12 @@ public abstract class AbstractModule implements ModuleInt {
     }
 
     @Override
-    public List<Chanel> getChanels() {
+    public List<ChanelInt> getChanels() {
         return chanels;
     }
 
     @Override
-    public void setChanels(List<Chanel> chanels) {
+    public void setChanels(List<ChanelInt> chanels) {
         this.chanels = chanels;
     }
 
@@ -155,7 +156,7 @@ public abstract class AbstractModule implements ModuleInt {
     @Override
     public List<String> getConfig() {
         List<String> config = new ArrayList<>();
-        config.add("DI32@" + id * 0.01 + "{");
+        config.add("DI32@" + id.toString() + "{");
         config.add("vname=\"" + vname + "\";");
         config.add("ts_vname=\"" + ts_vname + "\";");
         config.add("kind=\"" + kind + "\";");

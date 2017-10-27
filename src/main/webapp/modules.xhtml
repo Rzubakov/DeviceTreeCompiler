@@ -10,45 +10,51 @@
             <h:form id="form">
                 <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
                 <div class="ui-g-12 ui-md-4 ui-lg-4">
-                    <div class="ui-g-12 ui-md-4 ui-lg-4">
-                        <p:dataTable
-                            id="projects" 
-                            var="project" 
-                            value="#{projectBean.projects}" 
-                            editable="true" 
-                            scrollable="true"  
-                            scrollHeight="200" 
-                            styleClass="table" 
-                            editMode="cell" 
-                            rowKey="#{project.id}" 
-                            emptyMessage="Добавьте проект."  >
-                            <f:facet name="header">Проекты</f:facet> 
-                            <p:ajax event="rowSelect"  update="@form" />                     
-                            <p:column headerText="Имя проекта" footerText="Имя проекта" >
-                                <h:outputText value="#{project.name}" title="Имя проекта"/>
-                            </p:column>                      
-                        </p:dataTable> 
-                    </div>  
+                    <p:dataTable
+                        id="projects" 
+                        var="project" 
+                        value="#{modulesBean.projects}" 
+                        scrollable="true"  
+                        scrollHeight="180" 
+                        styleClass="table" 
+                        selectionMode="single" 
+                        rowKey="#{project.id}" 
+                        selection="#{modulesBean.selectedProject}" 
+                        emptyMessage="Добавьте проект."  >
+                        <f:facet name="header">Проекты</f:facet> 
+                        <p:ajax event="rowSelect"  update="@form" />     
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="prj.png" width="30"/>
+                        </p:column>                         
+                        <p:column headerText="Имя проекта" >
+                            <h:outputText value="#{project.name}" title="Имя проекта"/>
+                        </p:column>                      
+                    </p:dataTable>  
+                    <p:separator />
                     <p:dataTable 
                         var="controller" 
                         value="#{modulesBean.controllers}" 
                         styleClass="table" 
                         rowStyleClass="#{controller.isFull() ? 'full' : null}"
                         selectionMode="single" 
-                        emptyMessage="Необходимо добавить контроллер." 
+                        emptyMessage="Необходимо выбрать проект." 
                         selection="#{modulesBean.selectedController}" 
                         rowKey="#{controller.id}" 
                         scrollable="true" 
-                        scrollHeight="270">
+                        scrollHeight="180">
                         <f:facet name="header">Контроллеры проекта</f:facet>
                         <p:ajax event="rowSelect"  update="@form" />
-                        <p:column headerText="Наименование" footerText="Наименование">
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="controller.png" width="30"/>
+                        </p:column>                      
+                        <p:column headerText="Наименование" >
                             <h:outputText value="#{controller.name}" />
                         </p:column>
-                        <p:column headerText="Шасси" footerText="Шасси">
+                        <p:column headerText="Шасси" >
                             <h:outputText value="#{controller.size}/#{controller.currentSize}" />
                         </p:column>   
-                    </p:dataTable>      
+                    </p:dataTable>   
+
                 </div>
                 <div class="ui-g-12 ui-md-8 ui-lg-8">
                     <p:panel id="buttons" header="Добавить модуль" style="margin-bottom:10px" >
@@ -66,13 +72,10 @@
                         rowStyleClass="#{module.isFull() ? 'full' : null}"
                         emptyMessage="Необходимо выбрать контроллер." 
                         scrollable="true" 
-                        scrollHeight="400">
+                        scrollHeight="350">
                         <f:facet name="header">Модули контроллера #{modulesBean.selectedController.name}</f:facet>
                         <p:column width="30">
                             <p:graphicImage library="images" name="#{module.name}.png" width="30"/>
-                        </p:column> 
-                        <p:column headerText="id" footerText="id">
-                            <h:outputText value="#{module.id}" />
                         </p:column> 
                         <p:column headerText="size" footerText="size">
                             <h:outputText value="#{module.currentSize}/#{module.size}" />

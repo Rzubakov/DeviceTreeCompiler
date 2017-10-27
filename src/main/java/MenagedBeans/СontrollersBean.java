@@ -1,12 +1,15 @@
 package MenagedBeans;
 
+import controller.ControllerFactory;
 import controller.ControllerInt;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import project.EmptyProject;
+import project.ProjectInt;
 
 @ManagedBean(name = "controllersBean")
 @ViewScoped
@@ -16,9 +19,20 @@ public class СontrollersBean implements Serializable {
 
     @ManagedProperty("#{sessionBean}")
     private SessionBean session;
-    private EmptyProject selectedProject;
+    private ProjectInt selectedProject;
 
     public СontrollersBean() {
+        selectedProject = new EmptyProject();
+    }
+
+    public void addController(String type) {
+        ControllerInt controller = ControllerFactory.getControllerByType(type);
+        controller.setId(UUID.randomUUID());
+        selectedProject.addController(controller);
+    }
+
+    public void deleteController(ControllerInt controller) {
+        selectedProject.deleteController(controller);
     }
 
     public SessionBean getSession() {
@@ -29,11 +43,15 @@ public class СontrollersBean implements Serializable {
         this.session = session;
     }
 
+    public List<ProjectInt> getProjects() {
+        return session.getProjects();
+    }
+
     public List<ControllerInt> getControllers() {
         return selectedProject.getControllers();
     }
 
-    public EmptyProject getSelectedProject() {
+    public ProjectInt getSelectedProject() {
         return selectedProject;
     }
 

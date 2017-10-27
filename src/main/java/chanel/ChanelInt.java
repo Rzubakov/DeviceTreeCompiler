@@ -1,10 +1,12 @@
 package chanel;
 
-public interface Chanel {
+import java.util.UUID;
 
-    public Integer getId();
+public interface ChanelInt {
 
-    public void setId(Integer id);
+    public UUID getId();
+
+    public void setId(UUID id);
 
     public Integer getType();
 

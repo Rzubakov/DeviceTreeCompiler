@@ -1,7 +1,8 @@
 package module;
 
-import chanel.Chanel;
 import java.util.List;
+import java.util.UUID;
+import chanel.ChanelInt;
 
 public interface ModuleInt {
 
@@ -9,9 +10,9 @@ public interface ModuleInt {
 
     public void setType(String type);
 
-    public Integer getId();
+    public UUID getId();
 
-    public void setId(Integer id);
+    public void setId(UUID id);
 
     public Integer getIndex();
 
@@ -33,13 +34,13 @@ public interface ModuleInt {
 
     public void setSize(Integer size);
 
-    public void addChanel(Chanel chanel);
+    public void addChanel(ChanelInt chanel);
 
-    public Chanel getChanel(int index);
+    public ChanelInt getChanel(int index);
 
-    public List<Chanel> getChanels();
+    public List<ChanelInt> getChanels();
 
-    public void setChanels(List<Chanel> chanels);
+    public void setChanels(List<ChanelInt> chanels);
 
     public String getKind();
 
@@ -54,7 +55,7 @@ public interface ModuleInt {
     public Boolean isFull();
 
     public Boolean isSingleFull();
-    
+
     public Boolean isDoubleFull();
 
 }

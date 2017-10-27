@@ -3,11 +3,12 @@ package controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 import module.ModuleInt;
 
 public abstract class AbstractController implements ControllerInt {
 
-    protected Integer id;
+    protected UUID id;
     protected List<ModuleInt> modules = new ArrayList<>();
     protected String type;
     protected String name;
@@ -18,12 +19,12 @@ public abstract class AbstractController implements ControllerInt {
     }
 
     @Override
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

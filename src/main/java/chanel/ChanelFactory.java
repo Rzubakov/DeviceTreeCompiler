@@ -4,7 +4,7 @@ import java.util.Properties;
 
 public class ChanelFactory {
 
-    public static Chanel getChanelByType(String type) {
+    public static ChanelInt getChanelByType(String type) {
         switch (type) {
             case "SDI":
                 return new SDI();

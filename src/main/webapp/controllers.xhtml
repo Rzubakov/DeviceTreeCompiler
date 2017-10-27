@@ -13,7 +13,7 @@
                     <p:dataTable
                         id="projects" 
                         var="project" 
-                        value="#{projectBean.projects}" 
+                        value="#{controllersBean.projects}" 
                         scrollable="true"  
                         scrollHeight="470" 
                         styleClass="table" 
@@ -22,7 +22,10 @@
                         selection="#{controllersBean.selectedProject}" 
                         emptyMessage="Добавьте проект."  >
                         <f:facet name="header">Проекты</f:facet> 
-                        <p:ajax event="rowSelect"  update="@form" />                     
+                        <p:ajax event="rowSelect"  update="@form" />      
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="prj.png" width="30"/>
+                        </p:column>                            
                         <p:column headerText="Имя проекта" footerText="Имя проекта" >
                             <h:outputText value="#{project.name}" title="Имя проекта"/>
                         </p:column>                      
@@ -46,13 +49,12 @@
                         rowStyleClass="#{controller.isFull() ? 'full' : null}"
                         editMode="cell" 
                         rowKey="#{controller.id}" 
-                        emptyMessage="Добавьте контроллер."  >
-
+                        emptyMessage="Необходимо выбрать/добавить проект."  >
                         <f:facet name="header">Контроллеры</f:facet> 
-                        <p:ajax event="rowSelect"  update="@form" />
-                        <p:column headerText="id" footerText="id" >
-                            <h:outputText value="#{controller.id}" title="id"/>
-                        </p:column>                       
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="controller.png" width="30"/>
+                        </p:column> 
+                        <p:ajax event="rowSelect"  update="@form" />                 
                         <p:column headerText="Тип контроллера" footerText="Тип контроллера" >
                             <h:outputText value="#{controller.type}" title="Тип контроллера"/>
                         </p:column>
@@ -71,8 +73,8 @@
                         <p:column headerText="Наименование" footerText="Наименование" >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{controller.name}"/></f:facet>
-                                <f:facet name="input">
-                                    <p:inputText id="description" value="#{controller.name}" validatorMessage="Наименование обязательно. Длина от 5 до 255 символов.">
+                                <f:facet name="input" >
+                                    <p:inputText id="description" value="#{controller.name}" style="width: 100%;" validatorMessage="Наименование обязательно. Длина от 5 до 255 символов.">
                                         <f:validateLength minimum="5" maximum="255" />
                                     </p:inputText>
                                 </f:facet>

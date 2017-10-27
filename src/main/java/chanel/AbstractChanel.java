@@ -1,8 +1,10 @@
 package chanel;
 
-public class AbstractChanel implements Chanel {
+import java.util.UUID;
 
-    protected Integer id;
+public class AbstractChanel implements ChanelInt {
+
+    protected UUID id;
     protected Integer type;
     protected Integer size;
     protected Integer method;
@@ -22,12 +24,12 @@ public class AbstractChanel implements Chanel {
     protected Integer T_periodic;
 
     @Override
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

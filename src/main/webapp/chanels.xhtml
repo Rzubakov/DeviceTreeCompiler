@@ -9,23 +9,47 @@
         <ui:define name="content">
             <h:form id="form">
                 <p:growl id="growl" showDetail="false" sticky="true" autoUpdate="true"/>
-                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <p:dataTable
+                        id="projects" 
+                        var="project" 
+                        value="#{chanelsBean.projects}" 
+                        scrollable="true"  
+                        scrollHeight="120" 
+                        styleClass="table" 
+                        selectionMode="single" 
+                        rowKey="#{project.id}" 
+                        selection="#{chanelsBean.selectedProject}" 
+                        emptyMessage="Добавьте проект."  >
+                        <f:facet name="header">Проекты</f:facet> 
+                        <p:ajax event="rowSelect"  update="@form" />     
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="prj.png" width="30"/>
+                        </p:column>                         
+                        <p:column headerText="Имя проекта"  >
+                            <h:outputText value="#{project.name}" title="Имя проекта"/>
+                        </p:column>                      
+                    </p:dataTable>  
+                    <p:separator />
                     <p:dataTable 
                         var="controller" 
-                        value="#{chanelsBean.controllers}"  
+                        value="#{chanelsBean.selectedProject.controllers}"  
                         selectionMode="single" 
                         selection="#{chanelsBean.selectedController}" 
                         rowKey="#{controller.id}"
                         styleClass="table" 
                         rowStyleClass="#{controller.isFull() ? 'full' : null}"                       
                         scrollable="true" 
-                        scrollHeight="200">
-                        <p:ajax event="rowSelect"  update="@form" listener="#{chanelsBean.resetModule()}"/>
-                        <f:facet name="header">Контроллеры проекта</f:facet>
-                        <p:column headerText="Наименование" footerText="Наименование">
+                        scrollHeight="120">
+                        <p:ajax event="rowSelect"  update="@form" />
+                        <f:facet name="header">Контроллеры</f:facet>
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="controller.png" width="30"/>
+                        </p:column>     
+                        <p:column headerText="Наименование" >
                             <h:outputText value="#{controller.name}" />
                         </p:column>
-                        <p:column headerText="Шасси" footerText="Шасси">
+                        <p:column headerText="Шасси" >
                             <h:outputText value="#{controller.size}/#{controller.currentSize}" />
                         </p:column>   
                     </p:dataTable> 
@@ -40,21 +64,24 @@
                         scrollable="true" 
                         styleClass="table" 
                         rowStyleClass="#{module.isFull() ? 'full' : null}"
-                        scrollHeight="300">
+                        scrollHeight="120">
                         <p:ajax event="rowSelect" update="@form"/>
-                        <f:facet name="header">Модули контроллера</f:facet>
-                        <p:column headerText="index" footerText="index">
+                        <f:facet name="header">Модули</f:facet>
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="#{module.name}.png" width="30"/>
+                        </p:column>               
+                        <p:column headerText="index" >
                             <h:outputText value="#{module.index}" />
                         </p:column> 
-                        <p:column headerText="Наименование" footerText="Наименование">
+                        <p:column headerText="Наименование" >
                             <h:outputText value="#{module.name}" />
                         </p:column>
-                        <p:column headerText="size" footerText="size">
+                        <p:column headerText="size" >
                             <h:outputText value="#{module.size}/#{module.currentSize}" />
                         </p:column> 
                     </p:dataTable>                   
                 </div>
-                <div class="ui-g-12 ui-md-9 ui-lg-9">
+                <div class="ui-g-12 ui-md-8 ui-lg-8">
                     <p:panel id="buttons" header="Добавить канал" style="margin-bottom:10px" >
                         <h:panelGrid columns="5" cellpadding="5" >
                             <p:commandButton  update="@form" value="AI"   disabled="#{chanelsBean.selectedModule.type != 'AI' or chanelsBean.selectedModule.isSingleFull()}"  actionListener="#{chanelsBean.addChanel('AI')}" />
@@ -72,15 +99,12 @@
                         editable="true"
                         scrollable="true" 
                         styleClass="table" 
-                        scrollHeight="490">
-
+                        scrollHeight="360">
                         <p:ajax event="rowSelect" />
                         <f:facet name="header">Каналы модуля</f:facet>
-
-                        <p:column headerText="id" footerText="id" width="100">
-                            <h:outputText value="#{chanel.id}" title="id канала"/>
-                        </p:column>  
-
+                        <p:column width="30">
+                            <p:graphicImage library="images" name="#{chanel.method}.png" width="30"/>
+                        </p:column>                
                         <p:column headerText="method" footerText="method" width="100">
                             <h:outputText value="#{chanel.method}" title="Метод обработки значения канала  –  целое число, идентифицирующее способ обработки значения."/>
                         </p:column>   

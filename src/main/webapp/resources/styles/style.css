@@ -1,8 +1,25 @@
-body,html{
+bodybody,html{
     padding: 0px;
     margin: 0px;
 }
-
+body{
+    background-image: url("#{resource['images/index.jpg']}");
+    background-size: cover;
+}
+h1{
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
+h2{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    padding-top: 100px;
+}
+.centered{
+    text-align: center;
+}
 .inv{
     background-color: #fca752 !important;
 }

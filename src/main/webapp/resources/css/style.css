@@ -1,0 +1,31 @@
+html,body{
+    padding:0;
+    margin:0;
+    height:100%;
+}   
+.ui-widget,.ui-widget input {
+    font-family: Segoe UI,sans-serif;
+}
+#container{
+    display: flex;
+    height: 100%;
+}
+#loginForm, #registerForm{
+    margin: auto;
+}
+
+.ui-paginator-bottom {
+    display: none;
+}
+.ui-icon {
+    height: 16px!important;
+}
+
+.ui-messages-error{
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.red{
+    color:red!important;
+}

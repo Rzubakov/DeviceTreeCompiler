@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+    <h:head>
+        <title><ui:insert name="title">Конфигуратор UnitBus и МЭК104</ui:insert></title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"  />
+    </h:head>
+    <h:body> 
+        <div  id="container">
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 class="display-3">Конфигуратор UnitBus и МЭК104</h1>
+                    <p class="lead">Автоматизированная сборка файлов конфигурации контроллера МФК-1500/МФК-3000.</p>
+                    <p><h:link class="btn btn-lg btn-success" outcome="projects">Перейти в конфигуратор</h:link></p>
+                    <p><h:link class="btn btn-lg btn-warning" outcome="projects">Запросить доступ</h:link></p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+
+                <div class="col-md-4">
+                    <h2>Конвертер .dts в .dtb и наоборот.</h2>
+                    <p>Обеспечивает конвертацию файлов .dts (device tree source - текстовый файл, описывающий дерево устройств)в бинарный файл .dtb.</p>
+                </div>
+                <div class="col-md-4">
+                    <h2>МЭК 60870-5-104 конфигуратор.</h2>
+                    <p>Конфигурация протокола МЭК 60870-5-101/104, для обеспечения передачи данных в системы верхнего уровня.</p>
+                </div>
+                <div class="col-md-4">
+                    <h2>UnitBus конфигуратор ввода/вывода.</h2>
+                    <p>Позволяет создать конфигурацию доступа к данным модулей МФК1500 по протоколу МЭК 60870-5-104.</p>
+                </div>
+            </div>
+
+
+            <footer>
+                <p>©Зубаков Роман</p>
+            </footer> 
+        </div>
+    </h:body>
+</html>  

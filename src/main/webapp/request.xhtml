@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+    <h:head>
+        <title><ui:insert name="title">Вход</ui:insert></title>
+
+    </h:head>
+    <h:body> 
+        <div class="ui-g" id="container">
+            <h:form id="requestForm">  
+                <p:panel header="Запросить доступ" id="requestPanel">
+                    <p:messages/>
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputText value="Адрес эл. почты:" />
+                        <p:inputText  id="email" value="#{requestBean.email}" required="true" label="Адрес эл. почты" requiredMessage="Введите адрес эл. почты" validatorMessage="Введите корректный email адрес.">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText>     
+                        <p:commandButton value="Запросить" validateClient="true" update="@form" icon="ui-icon-check"  action="#{loginBean.login}" />                 
+                    </h:panelGrid>
+                </p:panel>         
+            </h:form>
+        </div>
+    </h:body>
+</html>  

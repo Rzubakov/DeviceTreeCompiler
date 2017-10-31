@@ -1,4 +1,4 @@
-package MenagedBeans;
+package mBeans;
 
 import controller.ControllerInt;
 import java.io.Serializable;

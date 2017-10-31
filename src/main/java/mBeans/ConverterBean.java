@@ -1,6 +1,6 @@
-package MenagedBeans;
+package mBeans;
 
-import EJB.UtilsInt;
+import ejb.UtilsInt;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

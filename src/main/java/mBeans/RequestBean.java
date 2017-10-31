@@ -1,22 +1,22 @@
-package menagedBeans;
+package mBeans;
 
 import ejb.MailInt;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "requestBean")
-@ViewScoped
+@SessionScoped
 public class RequestBean implements Serializable {
+
+    private static final long serialVersionUID = 7840676564059844198L;
 
     @EJB
     private MailInt mailService;
     private String email;
     private String firstname;
     private String lastname;
-
-    private static final long serialVersionUID = -3002395189182737254L;
 
     public RequestBean() {
     }

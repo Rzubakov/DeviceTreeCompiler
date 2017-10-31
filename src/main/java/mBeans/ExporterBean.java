@@ -1,6 +1,6 @@
-package MenagedBeans;
+package mBeans;
 
-import EJB.UtilsInt;
+import ejb.UtilsInt;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

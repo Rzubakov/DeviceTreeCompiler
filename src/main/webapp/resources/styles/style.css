@@ -1,11 +1,8 @@
-bodybody,html{
+body,html{
     padding: 0px;
     margin: 0px;
 }
-body{
-    background-image: url("#{resource['images/index.jpg']}");
-    background-size: cover;
-}
+
 h1{
     color: white;
     font-size: 40px;

@@ -1,4 +1,4 @@
-package MenagedBeans;
+package mBeans;
 
 import chanel.ChanelFactory;
 import chanel.ChanelInt;

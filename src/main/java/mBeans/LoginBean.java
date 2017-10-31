@@ -1,4 +1,4 @@
-package MenagedBeans;
+package mBeans;
 
 import java.io.Serializable;
 

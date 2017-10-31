@@ -5,20 +5,40 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"> 
     <h:head>
-        <title><ui:insert name="title">Вход</ui:insert></title>
-
+        <title><ui:insert name="title">Запрос доступа</ui:insert></title>
+        <style>
+            html,body{
+                padding:0;
+                margin:0;
+                height:100%;
+            }   
+            #loginForm, #requestForm{
+                margin: auto;
+            }
+            #container{
+                height: 100%;
+            }
+        </style>
     </h:head>
     <h:body> 
-        <div class="ui-g" id="container">
+        <div class="ui-g " id="container" >
             <h:form id="requestForm">  
                 <p:panel header="Запросить доступ" id="requestPanel">
-                    <p:messages/>
+                    <p:growl autoUpdate="true"/>
                     <h:panelGrid columns="2" cellpadding="10">
                         <h:outputText value="Адрес эл. почты:" />
                         <p:inputText  id="email" value="#{requestBean.email}" required="true" label="Адрес эл. почты" requiredMessage="Введите адрес эл. почты" validatorMessage="Введите корректный email адрес.">
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                         </p:inputText>     
-                        <p:commandButton value="Запросить" validateClient="true" update="@form" icon="ui-icon-check"  action="#{loginBean.login}" />                 
+
+                        <h:outputText value="Имя:" />
+                        <p:inputText  id="firstname" value="#{requestBean.firstname}" required="true" label="Имя" requiredMessage="Необходимо заполнить имя" ></p:inputText>  
+
+                        <h:outputText value="Фамилия:" />
+                        <p:inputText  id="lastname" value="#{requestBean.lastname}" required="true" label="Фамилия" requiredMessage="Необходимо заполнить фамилия" ></p:inputText>  
+
+
+                        <p:commandButton value="Запросить" validateClient="true" icon="ui-icon-check"  action="#{requestBean.sendRequest}" />                 
                     </h:panelGrid>
                 </p:panel>         
             </h:form>
